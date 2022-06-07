@@ -44,11 +44,11 @@
                     <select name="tabuleiro_idtabuleiro"  id="tabuleiro_idtabuleiro" class="form-select">
                         <?php
                         require_once ("acao.php");
-                            echo listarTab(0);
+                            echo selection(0, $dados['tabuleiro_idtabuleiro']);
                         ?>
                     </select>
                     <br>
-            <input type="hidden" id="table" name="table" class="table" value="quadrado">
+                    <input type="hidden" id="table" name="table" class="table" value="quadrado">
             <input type="hidden" name="idquadrado" id="" value="<?php if($action == "editar"){echo $dados['idquadrado'];}?>">
 
             <button  type="submit" class="btn btn-outline-dark" name="action" id="action" value="<?php if($action == "editar"){echo "editar";} else {echo "insert";}?>">Enviar</button>

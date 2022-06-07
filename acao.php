@@ -112,21 +112,27 @@
         return $dados;
     }
 
-    function exibirTab($chave, $dados){
-        $str = 0;
+    include_once('classes/Tabuleiro.class.php');
+    function selection($id, $idSelect){
+        $tab = new Tabuleiro("","");
+        $lista = $tab->buscarTab($id);
+        return option(array('idtabuleiro', 'lado'), $lista, $idSelect);
+    }
+    
+    function option($chave, $dados, $id=null){
+        $str = "<option value='0'>Selecione um tabuleiro</option>";
+        $tab = new Tabuleiro("","");
+
         foreach($dados as $linha){
-            $str .= "<option value='".$linha[$chave[0]]."'>".$linha[$chave[1]]."</option>";
+            $selected = "";
+            if($id == $linha[$chave[0]]){
+                $selected = "selected";
+            }
+            $str .= "<option ".$selected." value='".$linha[$chave[0]]."'>".$linha[$chave[0]]."</option>";
         }
         return $str;
     }
-    include_once('classes/Tabuleiro.class.php');
 
-    function listarTab($id){
-        $tab = new Tabuleiro("","");
-        $lista = $tab->buscarTab($id);
-        return exibirTab(array('idtabuleiro', 'lado'), $lista);
-    }
-    
 ?>
 </body>
 </html>
