@@ -64,10 +64,8 @@
                 </form>
 
         <?php
-        $tab = new Tabuleiro("","");
-        $lista = $tab->listar($buscar, $procurar);
+        $lista = Tabuleiro::listar($buscar, $procurar);
         foreach ($lista as $linha) { 
-           
         ?>
           <tr><td><?php echo $linha['idtabuleiro'];?></td>
             <td><?php echo $linha['lado'];?></td>

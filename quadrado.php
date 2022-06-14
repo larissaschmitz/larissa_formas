@@ -67,10 +67,8 @@
                 </form>
 
         <?php
-        $quad = new Quadrado("","","","");
-        $lista = $quad->listar($buscar, $procurar);
+        $lista = Quadrado::listar($buscar, $procurar); //metodo estatico
         foreach ($lista as $linha) { 
-           
         ?>
             <tr><td><?php echo $linha['idquadrado'];?></td>
                 <td><?php echo $linha['lado'];?></td>

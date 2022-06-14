@@ -21,16 +21,13 @@
         }
         if($acao == "insert"){
             if($table == "quadrado"){
-                $quad = new Quadrado("", $_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
-                $quad->inserir();
+                $quad = Quadrado::inserir($_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 header("location:quadrado.php");
             } else if($table == "tabuleiro")  {
-                $tab = new Tabuleiro("", $_POST['lado']);
-                $tab->inserir();
+                $tab = Tabuleiro::inserir($_POST['lado']);
                 header("location:tabuleiro.php");
             } else if($table == "usuario")  {
-                $user = new Usuario("", $_POST['nome'], $_POST['login'], $_POST['senha']);
-                $user->inserir();
+                $user = Usuario::inserir($_POST['nome'], $_POST['login'], $_POST['senha']);
                 header("location:usuario.php");
             }
         }
@@ -38,33 +35,27 @@
         else if($acao == "excluir"){
             if($table == "quadrado"){
                 $idquadrado = isset($_POST['idquadrado']) ? $_POST['idquadrado'] : "";
-                $quad = new Quadrado($_GET['idquadrado'], "", "", "");
-                $quad->excluir();
+                $quad = Quadrado::excluir($_GET['idquadrado']);
                 header("location:quadrado.php");
             } else if($table == "tabuleiro"){
                 $idtabuleiro = isset($_POST['idtabuleiro']) ? $_POST['idtabuleiro'] : "";
-                $tab = new Tabuleiro($_GET['idtabuleiro'], "");
-                $tab->excluir();
+                $tab = Tabuleiro::excluir($_GET['idtabuleiro']);
                 header("location:tabuleiro.php");
             } else if($table == "usuario"){
                 $idusuario = isset($_POST['idusuario']) ? $_POST['idusuario'] : "";
-                $user = new Usuario($_GET['idusuario'], "", "", "");
-                $user->excluir();
+                $user = Usuario::excluir($_GET['idusuario']);
                 header("location:usuario.php");
             }
         }
             if($acao == "editar"){
                 if($table == "quadrado"){
-                $quad = new Quadrado($_POST['idquadrado'], $_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
-                $quad->editar();
+                $quad = Quadrado::editar($_POST['idquadrado'], $_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 header("location:quadrado.php");  
             } else if ($table == "tabuleiro"){
-                $tab = new Tabuleiro($_POST['idtabuleiro'], $_POST['lado']);
-                $tab->editar();
+                $tab = Tabuleiro::editar($_POST['idtabuleiro'], $_POST['lado']);
                 header("location:tabuleiro.php");
             }else if ($table == "usuario"){
-                $user = new Usuario($_POST['idusuario'], $_POST['nome'], $_POST['login'], $_POST['senha']);
-                $user->editar();
+                $user = Usuario::editar($_POST['idusuario'], $_POST['nome'], $_POST['login'], $_POST['senha']);
                 header("location:usuario.php");
             }
         }

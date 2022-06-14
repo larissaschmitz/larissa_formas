@@ -66,10 +66,8 @@
                 </form>
 
         <?php
-        $user = new Usuario("","","","");
-        $lista = $user->listar($buscar, $procurar);
+        $lista = Usuario::listar($buscar, $procurar);
         foreach ($lista as $linha) { 
-           
         ?>
             <tr><td><?php echo $linha['idusuario'];?></td>
                 <td><?php echo $linha['nome'];?></td>

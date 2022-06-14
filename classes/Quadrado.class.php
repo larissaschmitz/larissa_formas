@@ -52,35 +52,36 @@
             return $this->getLado()*sqrt(2);
         }
 
-        //CRUD
-        public function inserir(){
+        // CRUD
+        public static function inserir($lado, $cor, $tabuleiro_idtabuleiro){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('INSERT INTO quadrado (lado, cor, tabuleiro_idtabuleiro) VALUES(:lado, :cor, :tabuleiro_idtabuleiro)');
-            $stmt->bindValue(':lado', $this->getLado());
-            $stmt->bindValue(':cor', $this->getCor());
-            $stmt->bindValue(':tabuleiro_idtabuleiro', $this->getIdT());
+            $stmt->bindValue(':lado', $lado);
+            $stmt->bindValue(':cor', $cor);
+            $stmt->bindValue(':tabuleiro_idtabuleiro', $tabuleiro_idtabuleiro);
             return $stmt->execute();
         }
 
-        public function excluir(){
+        public static function excluir($id){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('DELETE FROM quadrado WHERE idquadrado = :idquadrado');
-            $stmt->bindValue(':idquadrado', $this->getId());
+            $stmt->bindValue(':idquadrado', $id);
             return $stmt->execute();
         }
         
 
-        public function editar() {
+        public static function editar($idquadrado, $lado, $cor, $tabuleiro_idtabuleiro) {
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare("UPDATE quadrado SET lado = :lado, cor = :cor, tabuleiro_idtabuleiro = :tabuleiro_idtabuleiro WHERE (idquadrado = :idquadrado);");
-            $stmt->bindValue(':idquadrado', $this->getId());
-            $stmt->bindValue(':lado', $this->getLado());
-            $stmt->bindValue(':cor', $this->getCor());
-            $stmt->bindValue(':tabuleiro_idtabuleiro', $this->getIdT());
+            $stmt->bindValue(':idquadrado', $idquadrado);
+            $stmt->bindValue(':lado', $lado);
+            $stmt->bindValue(':cor', $cor);
+            $stmt->bindValue(':tabuleiro_idtabuleiro', $tabuleiro_idtabuleiro);
             return $stmt->execute();
         }
 
-        public function listar($buscar = 0, $procurar = ""){
+        // CONSULTAS
+        public static function listar($buscar = 0, $procurar = ""){
             $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM quadrado";
             if ($buscar > 0)
