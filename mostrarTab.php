@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <?php
+    //inclusão de arquivos
+    include_once "classes/Tabuleiro.class.php";
+    //variaveis
     $idtabuleiro = isset($_GET['idtabuleiro']) ? $_GET['idtabuleiro'] : 0;
     $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
 
-    include_once('classes/Tabuleiro.class.php');
     $tab = new Tabuleiro("", $lado);
 ?>
 
@@ -16,7 +18,7 @@
     <title>Tabuleiro</title>
     <style>
         <?php
-        echo $tab->desenha();
+            echo $tab->desenha();
         ?>
     </style>
 </head>

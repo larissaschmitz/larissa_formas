@@ -4,7 +4,6 @@
     $table = "";
     if(isset($_POST['table'])){$table = $_POST['table'];}else if(isset($_GET['table'])){$table = $_GET['table'];}
 
-    include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
     acao($action, $table);
 
