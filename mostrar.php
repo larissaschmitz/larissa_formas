@@ -16,9 +16,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $title ?></title>
     <style>
-        <?php
-        
-        echo $quad->desenha();
+        <?php 
+            echo $quad->desenha();
         ?>
     </style>
 </head>
@@ -30,9 +29,6 @@
             // $x = $quad->Perimetro();
             // echo $x;
             echo $quad; 
-          
-
-            
         ?>
             
         <hr>

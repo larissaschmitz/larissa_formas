@@ -11,7 +11,7 @@
             $this->setCor($cor);
             $this->setIdT($tabuleiro_idtabuleiro);
         }
-       
+        
         public function getId() {
             return $this->id;
         }
