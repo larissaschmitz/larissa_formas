@@ -1,12 +1,9 @@
-<!DOCTYPE html>
 <?php
     $action = "";
     if(isset($_POST['action'])){$action = $_POST['action'];}else if(isset($_GET['action'])){$action = $_GET['action'];}
     $table = "";
     if(isset($_POST['table'])){$table = $_POST['table'];}else if(isset($_GET['table'])){$table = $_GET['table'];}
-?>
-<html>
-<?php
+
     include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
     acao($action, $table);
@@ -125,5 +122,3 @@
     }
 
 ?>
-</body>
-</html>
