@@ -7,7 +7,8 @@
             $this->setId($idtabuleiro);
             $this->setLado($lado);
         }
-                
+             
+        //metodos get e set
         public function getId() {
             return $this->idtabuleiro;
         }
@@ -23,14 +24,7 @@
                 $this->idtabuleiro = $idtabuleiro;
         }
         
-        public function Area() {
-            return $this->getLado()*$this->getLado();
-        }
-
-        public function Perimetro() {
-            return $this->getLado()*4;
-        }
-    
+        //CRUD
         public static function inserir($lado){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('INSERT INTO tabuleiro (lado) VALUES(:lado)');
@@ -53,6 +47,7 @@
             return $stmt->execute();
         }
 
+        //CONSULTAS
         public static function listar($buscar = 0, $procurar = ""){
             $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM tabuleiro";
@@ -66,6 +61,15 @@
                 $stmt->bindValue(':procurar', $procurar, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetchAll();
+        }
+
+        //metodos diversos
+        public function Area() {
+            return $this->getLado()*$this->getLado();
+        }
+
+        public function Perimetro() {
+            return $this->getLado()*4;
         }
 
         public function buscarTab($id){

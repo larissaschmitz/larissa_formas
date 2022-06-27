@@ -12,7 +12,7 @@
             $this->setSenha($senha);
         }
 
-                
+        //Metodos get e set 
         public function getId() {
             return $this->idusuario;
         }
@@ -41,7 +41,7 @@
                 $this->senha = $senha;
         }
     
-        
+        //CRUD
         public static function inserir($nome, $login, $senha){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('INSERT INTO usuario (nome, login, senha) VALUES(:nome, :login, :senha)');
@@ -71,6 +71,7 @@
             return $stmt->execute();
         }
 
+        //CONSULTAS
         public static function listar($buscar = 0, $procurar = ""){
             $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM usuario";
@@ -89,7 +90,7 @@
             return $stmt->fetchAll();
         }
 
-       
+       //Metodos diversos
         public function efetuarLogin($lg, $sn){
             $pdo = Conexao::getInstance();
             $sql = "SELECT nome FROM usuario WHERE login = '$lg' AND senha = '$sn';";

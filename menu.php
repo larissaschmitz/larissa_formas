@@ -25,6 +25,8 @@
               <li><a class="dropdown-item" href="tabuleiro.php">Tabuleiro</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="usuario.php">Usuário</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="triangulo.php">Triangulo</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -35,6 +37,8 @@
               <li><a class="dropdown-item" href="cadTabuleiro.php">Cadastro de tabuleiros</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="cadUsuario.php">Cadastro de usuário</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="cadTri.php">Cadastro de Triangulo</a></li>
             </ul>
           </li>
         </ul>

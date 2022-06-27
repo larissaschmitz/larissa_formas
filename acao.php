@@ -1,10 +1,10 @@
 <?php
+    require_once "conf/Conexao.php";
     $action = "";
     if(isset($_POST['action'])){$action = $_POST['action'];}else if(isset($_GET['action'])){$action = $_GET['action'];}
     $table = "";
     if(isset($_POST['table'])){$table = $_POST['table'];}else if(isset($_GET['table'])){$table = $_GET['table'];}
 
-    require_once "conf/Conexao.php";
     acao($action, $table);
 
     function acao($acao, $table){
@@ -14,10 +14,13 @@
             include_once('classes/Tabuleiro.class.php');
         } else if($table == "usuario"){
             include_once('classes/Usuario.class.php');
+        } else if($table == "triangulo"){
+            include_once('classes/Triangulo.class.php');
         }
         if($acao == "insert"){
             if($table == "quadrado"){
-                $quad = Quadrado::inserir($_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $quad = new Quadrado("", $_POST['cor'], $_POST['tabuleiro_idtabuleiro'], $_POST['lado'],);
+                $quad->inserir();
                 header("location:quadrado.php");
             } else if($table == "tabuleiro")  {
                 $tab = Tabuleiro::inserir($_POST['lado']);
@@ -25,27 +28,32 @@
             } else if($table == "usuario")  {
                 $user = Usuario::inserir($_POST['nome'], $_POST['login'], $_POST['senha']);
                 header("location:usuario.php");
+            }  else if($table == "triangulo")  {
+                $tri = Triangulo::inserir($_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                header("location:triangulo.php");
             }
         }
         
         else if($acao == "excluir"){
             if($table == "quadrado"){
-                $idquadrado = isset($_POST['idquadrado']) ? $_POST['idquadrado'] : "";
-                $quad = Quadrado::excluir($_GET['idquadrado']);
+                $quad = new Quadrado($_GET['idquadrado'], "", "", "");
+                $quad->excluir();                
                 header("location:quadrado.php");
             } else if($table == "tabuleiro"){
-                $idtabuleiro = isset($_POST['idtabuleiro']) ? $_POST['idtabuleiro'] : "";
                 $tab = Tabuleiro::excluir($_GET['idtabuleiro']);
                 header("location:tabuleiro.php");
             } else if($table == "usuario"){
-                $idusuario = isset($_POST['idusuario']) ? $_POST['idusuario'] : "";
                 $user = Usuario::excluir($_GET['idusuario']);
                 header("location:usuario.php");
-            }
+            } else if($table == "triangulo"){
+                $user = Triangulo::excluir($_GET['idtriangulo']);
+                header("location:triangulo.php");
+            } 
         }
             if($acao == "editar"){
                 if($table == "quadrado"){
-                $quad = Quadrado::editar($_POST['idquadrado'], $_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                    $quad = new Quadrado($_POST['idquadrado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro'], $_POST['lado']);
+                    $quad->editar();
                 header("location:quadrado.php");  
             } else if ($table == "tabuleiro"){
                 $tab = Tabuleiro::editar($_POST['idtabuleiro'], $_POST['lado']);

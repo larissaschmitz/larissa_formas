@@ -8,7 +8,7 @@
     $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
     $tabuleiro_idtabuleiro = isset($_GET['tabuleiro_idtabuleiro']) ? $_GET['tabuleiro_idtabuleiro'] : 0;    
     
-    $quad = new Quadrado("", $lado, $cor, $tabuleiro_idtabuleiro);
+    $quad = new Quadrado($idquadrado, $lado, $cor, $tabuleiro_idtabuleiro);
 ?>
 
 <html lang="pt-br">
