@@ -1,5 +1,6 @@
 <?php
-    class Usuario{
+require_once "Database.class.php";
+    class Usuario extends Database{
         private $idusuario;
         private $nome;
         private $login;
@@ -42,38 +43,35 @@
         }
     
         //CRUD
-        public static function inserir($nome, $login, $senha){
-            $pdo = Conexao::getInstance();
-            $stmt = $pdo->prepare('INSERT INTO usuario (nome, login, senha) VALUES(:nome, :login, :senha)');
-            $stmt->bindValue(':nome', $nome);
-            $stmt->bindValue(':login', $login);
-            $stmt->bindValue(':senha', $senha);
-            return $stmt->execute();
+        public function inserir(){
+            $sql = "INSERT INTO usuario (nome, login, senha) VALUES (:nome, :login, :senha)";
+            $parametros = array(":nome"=> $this->getNome(),
+                                ":login"=> $this->getlogin(),
+                                ":senha"=> $this->getSenha());
+
+            return parent::executaComando($sql, $parametros);
+        }
+        
+        public function excluir(){
+            $sql = "DELETE FROM usuario WHERE idusuario = :idusuario";
+            $parametros = array(":idusuario" => $this->getId());
+            return parent::executaComando($sql, $parametros);
+            
+        }
+        
+        public function editar(){
+            $sql = "UPDATE usuario SET nome = :nome, login = :login, senha = :senha WHERE (idusuario = :idusuario);";
+            $parametros = array(":nome"=> $this->getNome(),
+                                ":login"=> $this->getlogin(),
+                                ":senha"=> $this->getSenha(),
+                                ":idusuario"=> $this->getId());
+            
+            return parent::executaComando($sql, $parametros);
         }
 
         
-        public static function excluir($idusuario){
-                $pdo = Conexao::getInstance();
-                $stmt = $pdo->prepare('DELETE FROM usuario WHERE idusuario = :idusuario');
-                $stmt->bindValue(':idusuario', $idusuario);
-                
-                return $stmt->execute();
-            }
-        
-
-        public static function editar($idusuario, $nome, $login, $senha) {
-            $pdo = Conexao::getInstance();
-            $stmt = $pdo->prepare("UPDATE `quadrado`.`usuario` SET `nome` = :nome, `login` = :login, `senha` = :senha  WHERE (`idusuario` = :idusuario);");
-            $stmt->bindValue(':idusuario', $idusuario);
-            $stmt->bindValue(':nome', $nome);
-            $stmt->bindValue(':login', $login);
-            $stmt->bindValue(':senha', $senha);
-            return $stmt->execute();
-        }
-
         //CONSULTAS
         public static function listar($buscar = 0, $procurar = ""){
-            $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM usuario";
             if ($buscar > 0)
                 switch($buscar){
@@ -83,11 +81,11 @@
                     case(4): $sql .= " WHERE senha LIKE :procurar ORDER BY senha"; $procurar = "%".$procurar."%";  break;
                     
                 }
-            $stmt = $pdo->prepare($sql);
             if ($buscar > 0)
-                $stmt->bindValue(':procurar', $procurar, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll();
+                $par = array(':procurar' => $procurar);
+            else
+                $par = array();
+            return parent::buscar($sql, $par);
         }
 
        //Metodos diversos

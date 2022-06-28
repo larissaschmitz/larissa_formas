@@ -24,9 +24,13 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="tabuleiro.php">Tabuleiro</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="usuario.php">Usuário</a></li>
-              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="triangulo.php">Triangulo</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="retangulo.php">Retangulo</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="circulo.php">Circulo</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="usuario.php">Usuário</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -36,9 +40,13 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="cadTabuleiro.php">Cadastro de tabuleiros</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="cadUsuario.php">Cadastro de usuário</a></li>
-              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="cadTri.php">Cadastro de Triangulo</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="cadRet.php">Cadastro de Retangulos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="cadCir.php">Cadastro de Circulos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="cadUsuario.php">Cadastro de Usuário</a></li>
             </ul>
           </li>
         </ul>

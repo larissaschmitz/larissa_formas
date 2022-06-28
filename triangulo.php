@@ -70,7 +70,7 @@
                     <td><?php echo $linha['cor'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                 
-                    <td><a href='cadtriangulo.php?idtriangulo=<?php echo $linha['idtriangulo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
+                    <td><a href='cadTri.php?idtriangulo=<?php echo $linha['idtriangulo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
                     <td><a onclick="return confirm('Deseja mesmo excluir?')" href="acao.php?idtriangulo=<?php echo $linha['idtriangulo'];?>&table=triangulo&action=excluir"><img src="img/delete.svg" style="width: 1.8vw;"></a></td>
                     <td><a href="mostrar.php?idtriangulo=<?php echo $linha['idtriangulo']; ?>&lado1=<?php echo $linha['lado1'];?>&lado2=<?php echo $linha['lado2'];?>&lado3=<?php echo $linha['lado3'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
                 </tr>

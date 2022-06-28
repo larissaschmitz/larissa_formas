@@ -4,7 +4,7 @@
 */
 require_once "Database.class.php";
 
-    class Forma extends Database{
+    abstract class Forma extends Database{
         private $id;
         private $cor;
         private $tabuleiro_idtabuleiro;

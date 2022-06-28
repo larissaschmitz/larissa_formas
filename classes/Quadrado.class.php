@@ -37,7 +37,6 @@
             $sql = "DELETE FROM quadrado WHERE idquadrado = :idquadrado";
             $parametros = array(":idquadrado" => $this->getId());
             return parent::executaComando($sql, $parametros);
-            print_r($sql);
         }
         
 

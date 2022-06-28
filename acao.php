@@ -26,10 +26,12 @@
                 $tab = Tabuleiro::inserir($_POST['lado']);
                 header("location:tabuleiro.php");
             } else if($table == "usuario")  {
-                $user = Usuario::inserir($_POST['nome'], $_POST['login'], $_POST['senha']);
+                $user = new Usuario("", $_POST['nome'], $_POST['login'], $_POST['senha']);
+                $user->inserir();
                 header("location:usuario.php");
             }  else if($table == "triangulo")  {
-                $tri = Triangulo::inserir($_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $tri = new Triangulo("", $_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $tri->inserir();
                 header("location:triangulo.php");
             }
         }
@@ -43,10 +45,12 @@
                 $tab = Tabuleiro::excluir($_GET['idtabuleiro']);
                 header("location:tabuleiro.php");
             } else if($table == "usuario"){
-                $user = Usuario::excluir($_GET['idusuario']);
+                $user = new Usuario($_GET['idusuario'], "", "", "",);
+                $user->excluir();
                 header("location:usuario.php");
             } else if($table == "triangulo"){
-                $user = Triangulo::excluir($_GET['idtriangulo']);
+                $tri = new Triangulo($_GET['idtriangulo'], "", "","", "","");
+                $tri->excluir();
                 header("location:triangulo.php");
             } 
         }
@@ -59,8 +63,13 @@
                 $tab = Tabuleiro::editar($_POST['idtabuleiro'], $_POST['lado']);
                 header("location:tabuleiro.php");
             }else if ($table == "usuario"){
-                $user = Usuario::editar($_POST['idusuario'], $_POST['nome'], $_POST['login'], $_POST['senha']);
+                $user = new Usuario ($_POST['idusuario'], $_POST['nome'], $_POST['login'], $_POST['senha']);
+                $user->editar();
                 header("location:usuario.php");
+            }else if ($table == "triangulo"){
+                $tri = new Triangulo($_POST['idtriangulo'], $_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $tri->inserir();
+                header("location:triangulo.php");
             }
         }
     }
@@ -75,6 +84,10 @@
         $dados['login'] = $_POST["login"];
         $dados['senha'] = $_POST["senha"];
         $dados['idusuario'] = $_POST["idusuario"];
+        $dados['lado1'] = $_POST["lado1"];
+        $dados['lado2'] = $_POST["lado2"];
+        $dados['lado3'] = $_POST["lado3"];
+        $dados['idtriangulo'] = $_POST["idtriangulo"];
         
         return $dados;
     }
@@ -102,8 +115,18 @@
                 $dados['idusuario'] = $linha['idusuario'];
                 $dados['nome'] = $linha['nome'];
                 $dados['login'] = $linha['login'];
-                $dados['senha'] = $linha['senha'];}     
-            }
+                $dados['senha'] = $linha['senha'];
+            }     
+        } else if($table == 'usuario'){
+                $consulta = $pdo->query("SELECT * FROM triangulo WHERE idtriangulo = $id");
+                while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                    $dados['idtriangulo'] = $linha['idtriangulo'];
+                    $dados['lado1'] = $linha['lado1'];
+                    $dados['lado2'] = $linha['lado2'];
+                    $dados['lado3'] = $linha['lado3'];   
+                    $dados['cor'] = $linha['cor'];
+                    $dados['tabuleiro_idtabuleiro'] = $linha['tabuleiro_idtabuleiro'];}     
+                }
         return $dados;
     }
 
