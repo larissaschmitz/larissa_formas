@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-    $title = "Quadrado";
-    $idquadrado = isset($_GET['idquadrado']) ? $_GET['idquadrado'] : 0;
+    $title = "Círculo";
+    $idcirculo = isset($_GET['idcirculo']) ? $_GET['idcirculo'] : 0;
+    $raio = isset($_GET['raio']) ? $_GET['raio'] : 0;
     $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
-    $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
     $tabuleiro_idtabuleiro = isset($_GET['tabuleiro_idtabuleiro']) ? $_GET['tabuleiro_idtabuleiro'] : "";
 ?>
 
@@ -25,10 +25,10 @@
         <br><br><br>
         <?php  
             if ($acao = "salvar") {
-                include_once "classes/Quadrado.class.php";
-                $quad = new Quadrado($idquadrado, $lado, $cor, $tabuleiro_idtabuleiro);
-                echo $quad->desenha();
-                echo $quad;
+                include_once "classes/Circulo.class.php";
+                $cir = new Circulo($idcirculo, $raio, $cor, $tabuleiro_idtabuleiro);
+                echo $cir->desenha();
+                echo $cir;
             }
             ?>
             <br>

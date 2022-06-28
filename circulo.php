@@ -68,7 +68,8 @@
                 
                     <td><a href='cadCir.php?idcirculo=<?php echo $linha['idcirculo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
                     <td><a onclick="return confirm('Deseja mesmo excluir?')" href="acao.php?idcirculo=<?php echo $linha['idcirculo'];?>&table=circulo&action=excluir"><img src="img/delete.svg" style="width: 1.8vw;"></a></td>
-                    <td><a href="mostrar.php?idcirculo=<?php echo $linha['idcirculo']; ?>&raio=<?php echo $linha['raio'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
+                    <td><a href="mostrarCir.php?idcirculo=<?php echo $linha['idcirculo']; ?>&raio=<?php echo $linha['raio'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
+
                 </tr>
             <?php 
                 }

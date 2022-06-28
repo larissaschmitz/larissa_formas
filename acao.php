@@ -76,7 +76,7 @@
         }
             if($acao == "editar"){
                 if($table == "quadrado"){
-                    $quad = new Quadrado($_POST['idquadrado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro'], $_POST['lado']);
+                    $quad = new Quadrado($_POST['idquadrado'], $_POST['lado'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                     $quad->editar();
                 header("location:quadrado.php");  
             } else if ($table == "tabuleiro"){

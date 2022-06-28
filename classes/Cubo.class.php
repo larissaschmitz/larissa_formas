@@ -1,9 +1,9 @@
 <?php
     require_once "Forma.class.php";
-    class Quadrado extends Forma{
+    class Cubo extends Forma{
         private $lado;
 
-        public function __construct($id, $lado, $cor, $tabuleiro_idtabuleiro) {
+        public function __construct($id, $cor, $tabuleiro_idtabuleiro, $lado) {
             parent::__construct($id, $cor, $tabuleiro_idtabuleiro);
             $this->setLado($lado);
         }
@@ -83,32 +83,19 @@
             return $this->getLado()*sqrt(2);
         }
         
-        // public function __toString() {
-        //     $str = parent::__toString();
-        //     $str .= "<br>Lado: ".$this->getLado()."<br>";
-        //     return $str;
-        // }
-
-        public function __toString(){
+        public function __toString() {
             $str = parent::__toString();
-            $str .= "<br>Lado: ".$this->getLado().
-            "<br>Área: ".$this->area().
-            "<br>Perímetro: ".$this->perimetro().
-            "<br>Diagonal: ".$this->diagonal();
+            $str .= "<br>Lado: ".$this->getLado()."<br>";
             return $str;
         }
 
-        public function desenha(){
-            $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
-            return $desenho;
+        public function desenha() {
+            $style = ".quadrado {
+                height: ".$this->lado."vw;
+                width: ".$this->lado."vw;
+                background-color: ".$this->cor.";}";
+                return $style;
         }
-        // public function desenha() {
-        //     $style = ".quadrado {
-        //         height: ".$this->lado."vw;
-        //         width: ".$this->lado."vw;
-        //         background-color: ".$this->cor.";}";
-        //         return $style;
-        // }
     }
 
     // $quad = new Quadrado(1, 'rosa', 1, 40);

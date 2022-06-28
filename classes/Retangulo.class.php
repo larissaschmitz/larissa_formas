@@ -57,30 +57,47 @@
         }
 
 
+        public static function listar($buscar = 0, $procurar = ""){
+            $sql = "SELECT * FROM retangulo";
+            if ($buscar > 0)
+            switch($buscar){
+                case(1): $sql .= " WHERE idretangulo LIKE :procurar ORDER BY idretangulo"; $procurar = $procurar."%";  break;
+                case(2): $sql .= " WHERE retangulo.base LIKE :procurar ORDER BY base"; $procurar = $procurar."%"; break;
+                case(3): $sql .= " WHERE cor LIKE :procurar ORDER BY cor"; $procurar = "%".$procurar."%";  break;
+            }
+            if ($buscar > 0)
+            $par = array(':procurar' => $procurar);
+            else
+            $par = array();
+            return parent::buscar($sql, $par);
+        }
+        
+        
         public function __toString() {
             $str = parent::__toString();
             $str .="<br> Atura:".$this->getAltura()."<br>".
                     "Base:" .$this->getBase();
             return $str;
         }
-        public static function listar($buscar = 0, $procurar = ""){
-            $sql = "SELECT * FROM retangulo";
-            if ($buscar > 0)
-                switch($buscar){
-                    case(1): $sql .= " WHERE idretangulo LIKE :procurar ORDER BY idretangulo"; $procurar = $procurar."%";  break;
-                    case(2): $sql .= " WHERE retangulo.base LIKE :procurar ORDER BY base"; $procurar = $procurar."%"; break;
-                    case(3): $sql .= " WHERE cor LIKE :procurar ORDER BY cor"; $procurar = "%".$procurar."%";  break;
-                }
-            if ($buscar > 0)
-                $par = array(':procurar' => $procurar);
-            else
-                $par = array();
-            return parent::buscar($sql, $par);
+        public function desenha(){
+            $desenho = "<div style='height: ".$this->getAltura()."vw; width: ".$this->getBase()."vw; background-color:".$this->getCor().";'></div>";
+            return $desenho;
         }
-        
- 
-        public function desenha(){}
         public function Area(){}
+
+        /*public function __toString(){
+            $str = parent::__toString();
+            $str .= "<br>Lado: ".$this->getLado().
+            "<br>Área: ".$this->area().
+            "<br>Perímetro: ".$this->perimetro().
+            "<br>Diagonal: ".$this->diagonal();
+            return $str;
+        }
+
+        public function desenha(){
+            $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
+            return $desenho;
+        }*/
     }
 
     // $ret = new Retangulo(1, 'rosa', 1, 10, 40);

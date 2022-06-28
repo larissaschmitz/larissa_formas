@@ -70,7 +70,7 @@
                 
                     <td><a href='cadRet.php?idretangulo=<?php echo $linha['idretangulo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
                     <td><a onclick="return confirm('Deseja mesmo excluir?')" href="acao.php?idretangulo=<?php echo $linha['idretangulo'];?>&table=retangulo&action=excluir"><img src="img/delete.svg" style="width: 1.8vw;"></a></td>
-                    <td><a href="mostrar.php?idretangulo=<?php echo $linha['idretangulo'];?>&base=<?php echo $linha['base'];?>&altura=<?php echo $linha['altura'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
+                    <td><a href="mostrarRet.php?idretangulo=<?php echo $linha['idretangulo'];?>&base=<?php echo $linha['base'];?>&altura=<?php echo $linha['altura'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
                 </tr>
             <?php 
                 }
