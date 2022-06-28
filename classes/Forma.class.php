@@ -45,5 +45,13 @@ require_once "Database.class.php";
                     "Id Tabulueiro: ".$this->getIdT()."";
                     // "Contador: ".self::$contador;
         }
+
+        public abstract function desenha();
+        public abstract function Area();
+        public abstract function inserir();
+        public abstract function editar();
+        public abstract function excluir();
+        public abstract static function listar($buscar = 0, $procurar = "");
+
     }
 ?>

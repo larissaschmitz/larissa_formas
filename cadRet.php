@@ -5,16 +5,15 @@
     include_once "acao.php";
     //variaveis
     $action = isset($_GET['action']) ? $_GET['action'] : "";
-    $table = "triangulo";
+    $table = "retangulo";
     $dados;
-    $id = isset($_POST['idtriangulo']) ? $_POST['idtriangulo'] : "";
-    $lado1 = isset($_POST['lado1']) ? $_POST['lado1'] : 0;
-    $lado2 = isset($_POST['lado2']) ? $_POST['lado2'] : 0;
-    $lado3 = isset($_POST['lado3']) ? $_POST['lado3'] : 0;
+    $id = isset($_POST['idretangulo']) ? $_POST['idretangulo'] : "";
+    $base = isset($_POST['base']) ? $_POST['base'] : 0;
+    $altura = isset($_POST['altura']) ? $_POST['altura'] : 0;
     $cor = isset($_POST['cor']) ? $_POST['cor'] : "";
     $tabuleiro_idtabuleiro = isset($_POST['tabuleiro_idtabuleiro']) ? $_POST['tabuleiro_idtabuleiro'] : "";
     if ($action == 'editar'){
-        $id = isset($_GET['idtriangulo']) ? $_GET['idtriangulo'] : "";
+        $id = isset($_GET['idretangulo']) ? $_GET['idretangulo'] : "";
         if ($id > 0){
             $dados = buscarDados($id, $table);
         }
@@ -38,9 +37,8 @@
     ?>
     <div class="container-fluid">
         <form method="post" action="acao.php">
-            Lado 1: <input name="lado1" id="lado1" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados['lado1'];}?>"><br>         
-            Lado 2: <input name="lado2" id="lado2" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados['lado2'];}?>"><br>         
-            Lado 3: <input name="lado3" id="lado3" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados['lado3'];}?>"><br>         
+            Base: <input name="base" id="base" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados['base'];}?>"><br>         
+            Altura: <input name="altura" id="altura" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados['altura'];}?>"><br>         
             <br>
             Cor: <input name="cor" id="cor" type="color" required="true" placeholder="Digite a cor" value="<?php if ($action == "editar"){echo $dados['cor'];}?>"><br>
             <br>
@@ -53,8 +51,8 @@
                 </select>
                 <br>
                     
-            <input type="hidden" id="table" name="table" class="table" value="triangulo">
-            <input type="hidden" name="idtriangulo" id="" value="<?php if($action == "editar"){echo $dados['idtriangulo'];}?>">
+            <input type="hidden" id="table" name="table" class="table" value="retangulo">
+            <input type="hidden" name="idretangulo" id="" value="<?php if($action == "editar"){echo $dados['idretangulo'];}?>">
 
             <button  type="submit" class="btn btn-outline-dark" name="action" id="action" value="<?php if($action == "editar"){echo "editar";} else {echo "insert";}?>">Enviar</button>
         </form>  

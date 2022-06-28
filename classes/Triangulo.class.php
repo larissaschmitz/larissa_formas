@@ -89,21 +89,9 @@
             return parent::buscar($sql, $par);
         }
         
-    //     public static function listar($buscar = 0, $procurar = ""){
-    //         $pdo = Conexao::getInstance();
-    //         $sql = "SELECT * FROM triangulo";
-    //         if ($buscar > 0)
-    //             switch($buscar){
-    //                 case(1): $sql .= " WHERE idtriangulo LIKE :procurar ORDER BY idtriangulo"; $procurar = $procurar."%";  break;
-    //                 case(2): $sql .= " WHERE triangulo.lado1 LIKE :procurar ORDER BY lado1"; $procurar = $procurar."%"; break;
-    //                 case(3): $sql .= " WHERE cor LIKE :procurar ORDER BY cor"; $procurar = "%".$procurar."%";  break;
-    //             }
-    //         $stmt = $pdo->prepare($sql);
-    //         if ($buscar > 0)
-    //             $stmt->bindValue(':procurar', $procurar, PDO::PARAM_STR);
-    //         $stmt->execute();
-    //         return $stmt->fetchAll();
-    //     }
+ 
+        public function desenha(){}
+        public function Area(){}
     }
     
 

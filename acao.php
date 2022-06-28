@@ -16,6 +16,10 @@
             include_once('classes/Usuario.class.php');
         } else if($table == "triangulo"){
             include_once('classes/Triangulo.class.php');
+        } else if($table == "circulo"){
+            include_once('classes/Circulo.class.php');
+        }else if($table == "retangulo"){
+            include_once('classes/Retangulo.class.php');
         }
         if($acao == "insert"){
             if($table == "quadrado"){
@@ -33,6 +37,14 @@
                 $tri = new Triangulo("", $_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $tri->inserir();
                 header("location:triangulo.php");
+            } else if($table == "circulo")  {
+                $cir = new Circulo("", $_POST['raio'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $cir->inserir();
+                header("location:circulo.php");
+            }else if($table == "retangulo")  {
+                $ret = new Retangulo("", $_POST['base'], $_POST['altura'],$_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $ret->inserir();
+                header("location:retangulo.php");
             }
         }
         
@@ -52,7 +64,15 @@
                 $tri = new Triangulo($_GET['idtriangulo'], "", "","", "","");
                 $tri->excluir();
                 header("location:triangulo.php");
-            } 
+            } else if($table == "circulo"){
+                $cir = new Circulo($_GET['idcirculo'], "","","");
+                $cir->excluir();
+                header("location:circulo.php");
+            } else if($table == "retangulo"){
+                $ret = new Retangulo($_GET['idretangulo'], "","","", "");
+                $ret->excluir();
+                header("location:retangulo.php");
+            }
         }
             if($acao == "editar"){
                 if($table == "quadrado"){
@@ -68,11 +88,19 @@
                 header("location:usuario.php");
             }else if ($table == "triangulo"){
                 $tri = new Triangulo($_POST['idtriangulo'], $_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
-                $tri->inserir();
+                $tri->editar();
                 header("location:triangulo.php");
+            }else if ($table == "circulo"){
+                $cir = new Circulo($_POST['idcirculo'], $_POST['raio'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $cir->editar();
+                header("location:circulo.php");
+            }else if ($table == "retangulo"){
+                $cir = new Retangulo($_POST['idretangulo'], $_POST['base'],$_POST['altura'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $cir->editar();
+                header("location:retangulo.php");
             }
         }
-    }
+    
 
     function dados(){
         $dados = array();
@@ -84,10 +112,15 @@
         $dados['login'] = $_POST["login"];
         $dados['senha'] = $_POST["senha"];
         $dados['idusuario'] = $_POST["idusuario"];
+        $dados['idtriangulo'] = $_POST["idtriangulo"];
         $dados['lado1'] = $_POST["lado1"];
         $dados['lado2'] = $_POST["lado2"];
         $dados['lado3'] = $_POST["lado3"];
-        $dados['idtriangulo'] = $_POST["idtriangulo"];
+        $dados['idcirculo'] = $_POST["idcirculo"];
+        $dados['raio'] = $_POST["raio"];
+        $dados['idretangulo'] = $_POST["idretangulo"];
+        $dados['base'] = $_POST["base"];
+        $dados['altura'] = $_POST["altura"];
         
         return $dados;
     }
@@ -117,7 +150,7 @@
                 $dados['login'] = $linha['login'];
                 $dados['senha'] = $linha['senha'];
             }     
-        } else if($table == 'usuario'){
+        } else if($table == 'triangulo'){
                 $consulta = $pdo->query("SELECT * FROM triangulo WHERE idtriangulo = $id");
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
                     $dados['idtriangulo'] = $linha['idtriangulo'];
@@ -125,10 +158,27 @@
                     $dados['lado2'] = $linha['lado2'];
                     $dados['lado3'] = $linha['lado3'];   
                     $dados['cor'] = $linha['cor'];
-                    $dados['tabuleiro_idtabuleiro'] = $linha['tabuleiro_idtabuleiro'];}     
-                }
-        return $dados;
-    }
+                    $dados['tabuleiro_idtabuleiro'] = $linha['tabuleiro_idtabuleiro'];
+            }     
+        }else if($table == 'circulo'){
+                $consulta = $pdo->query("SELECT * FROM circulo WHERE idcirculo = $id");
+                while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                    $dados['idcirculo'] = $linha['idcirculo'];
+                    $dados['raio'] = $linha['raio'];
+                    $dados['cor'] = $linha['cor'];
+                    $dados['tabuleiro_idtabuleiro'] = $linha['tabuleiro_idtabuleiro'];
+            }
+        }  else if($table == 'retangulo'){
+            $consulta = $pdo->query("SELECT * FROM retangulo WHERE idretangulo = $id");
+            while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $dados['idretangulo'] = $linha['idretangulo'];
+                $dados['base'] = $linha['base'];
+                $dados['altura'] = $linha['altura'];
+                $dados['cor'] = $linha['cor'];
+                $dados['tabuleiro_idtabuleiro'] = $linha['tabuleiro_idtabuleiro'];
+            }     
+        }return $dados;
+    }}
 
     include_once('classes/Tabuleiro.class.php');
     function selection($id, $idSelect){
