@@ -2,7 +2,7 @@
 /*
     Super classe Forma que irá definir aquilo que é comum (Classe Pai)
 */
-require_once "Database.class.php";
+include_once ("classes/autoload.php");
 
     abstract class Forma extends Database{
         private $id;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     //inclusão de arquivos
-    include_once "classes/Tabuleiro.class.php";
+    include_once ("classes/autoload.php");
     //variaveis
     $idtabuleiro = isset($_GET['idtabuleiro']) ? $_GET['idtabuleiro'] : 0;
     $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;

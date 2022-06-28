@@ -1,5 +1,5 @@
 <?php
-    require_once "Forma.class.php";
+    include_once ("classes/autoload.php");
     class Triangulo extends Forma{
         private $lado1;
         private $lado2;
@@ -7,16 +7,16 @@
 
         public function __construct($id,$lado1, $lado2, $lado3, $cor, $tabuleiro_idtabuleiro){
             parent::__construct($id, $cor, $tabuleiro_idtabuleiro);
-            $this->setLado1($lado1);
+            $this->setlado1($lado1);
             $this->setLado2($lado2);
             $this->setLado3($lado3);
         }
 
-        public function getLado1() {
+        public function getlado1() {
             return $this->lado1;
         }
 
-        public function setLado1($lado1) {
+        public function setlado1($lado1) {
                 $this->lado1 = $lado1;
         }
 
@@ -38,15 +38,17 @@
 
         public function __toString() {
             $str = parent::__toString();
-            $str .="<br> Lado 1:".$this->getLado1()."<br>".
+            $str .="<br> Lado 1:".$this->getlado1()."<br>".
                 "Lado 2:".$this->getLado2()."<br>".
-                "Lado 3:" .$this->getLado3();
+                "Lado 3:" .$this->getLado3()."<br>".
+                "<br>Classificação:".$this->Tipo();
+
             return $str;
         }
 
         public function inserir(){
             $sql = "INSERT INTO triangulo (lado1, lado2, lado3, cor, tabuleiro_idtabuleiro) VALUES(:lado1, :lado2, :lado3, :cor, :tabuleiro_idtabuleiro)";
-            $parametros = array(":lado1"=> $this->getLado1(),
+            $parametros = array(":lado1"=> $this->getlado1(),
                                 ":lado2"=> $this->getLado2(),
                                 ":lado3"=> $this->getLado3(),
                                 ":cor"=> $this->getCor(),
@@ -64,7 +66,7 @@
 
         public function editar(){
             $sql = "UPDATE triangulo SET lado1 = :lado1, lado2 = :lado2, lado3 = :lado3, cor = :cor, tabuleiro_idtabuleiro = :tabuleiro_idtabuleiro WHERE (idtriangulo = :idtriangulo)";
-            $parametros = array(":lado1"=> $this->getLado1(),
+            $parametros = array(":lado1"=> $this->getlado1(),
                                 ":lado2"=> $this->getLado2(),
                                 ":lado3"=> $this->getLado3(),
                                 ":cor"=> $this->getCor(),
@@ -89,9 +91,23 @@
             return parent::buscar($sql, $par);
         }
         
- 
-        public function desenha(){}
-        public function Area(){}
+  public function Tipo(){
+            if ($this->getlado1() == $this->getlado1() && $this->getlado1() == $this->getLado2()) {
+                return "Equilátero";
+            }
+            elseif ($this->getlado1() != $this->getlado1() && $this->getlado1() != $this->getLado2() 
+            && $this->getlado1() != $this->getLado2()) {
+                return "Escaleno";
+            }
+            else{
+                return "Isóceles";
+            }
+        }
+        public function desenha(){
+            $str = "<div style='width: 0px; height: 0px; border-left: ".$this->lado3."vw solid transparent; border-right: "
+            .$this->lado2."vw solid transparent; border-bottom: ".$this->lado1."vw solid ".parent::getCor().";'></div><br>";
+            return $str;
+        }        public function Area(){}
     }
     
 

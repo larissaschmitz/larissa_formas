@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     //inclusão de arquivos
-    include_once "classes/Retangulo.class.php";
+    include_once ("classes/autoload.php");
     include_once "acao.php";
     require_once "conf/Conexao.php";
     

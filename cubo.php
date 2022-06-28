@@ -8,7 +8,7 @@
     //variaveis
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
     $buscar = isset($_POST["buscar"]) ? $_POST["buscar"] : 1; 
-    $table = "circulo";
+    $table = "cubo";
     ?>
 
 <html lang="pt-br">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img\favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Triangulo</title>
+    <title>Cubo</title>
 </head>
 
 <body>
@@ -32,8 +32,8 @@
         <h3>Consulta</h3>
         <table class="table table-hover">
                 <tr><td><b>ID</b></td>
-                    <td><b>Raio</b></td>
                     <td><b>Cor</b></td>
+                    <td><b>Quadrado</b></td>
                     <td><b>Tabuleiro</b></td>
                     <td><b>Editar</b></td>
                     <td><b>Deletar</b></td>
@@ -50,25 +50,25 @@
                         <p> Ordernar e pesquisar por:</p><br>
                         <form method="post" action="">
                         <input type="radio" name="buscar" value="1" class="form-check-input" <?php if ($buscar == "1") echo "checked" ?>> Id<br>
-                        <input type="radio" name="buscar" value="2" class="form-check-input" <?php if ($buscar == "2") echo "checked" ?>> Raio<br>
-                        <input type="radio" name="buscar" value="3" class="form-check-input" <?php if ($buscar == "3") echo "checked" ?>> Cor<br>
+                        <input type="radio" name="buscar" value="2" class="form-check-input" <?php if ($buscar == "2") echo "checked" ?>> Cor<br>
+                        <input type="radio" name="buscar" value="3" class="form-check-input" <?php if ($buscar == "3") echo "checked" ?>> Quadrado<br>
                     </div>
                     <br><br>
                 </form>
 
             <?php
                 //listagem com filtro de select
-                $lista = Circulo::listar($buscar, $procurar); 
-                foreach ($lista as $linha) { 
+                $lista = Cubo::listar($buscar, $procurar); 
+                foreach ($lista as $linha) {
             ?>
-                <tr><td><?php echo $linha['idcirculo'];?></td>
-                    <td><?php echo $linha['raio'];?></td>
+                <tr><td><?php echo $linha['idcubo'];?></td>
                     <td><?php echo $linha['cor'];?></td>
+                    <td><?php echo $linha['quadrado_idquadrado'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                 
-                    <td><a href='cadCir.php?idcirculo=<?php echo $linha['idcirculo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
-                    <td><a onclick="return confirm('Deseja mesmo excluir?')" href="acao.php?idcirculo=<?php echo $linha['idcirculo'];?>&table=circulo&action=excluir"><img src="img/delete.svg" style="width: 1.8vw;"></a></td>
-                    <td><a href="mostrarCir.php?idcirculo=<?php echo $linha['idcirculo']; ?>&raio=<?php echo $linha['raio'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
+                    <td><a href='cadCubo.php?idcubo=<?php echo $linha['idcubo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
+                    <td><a onclick="return confirm('Deseja mesmo excluir?')" href="acao.php?idcubo=<?php echo $linha['idcubo'];?>&table=cubo&action=excluir"><img src="img/delete.svg" style="width: 1.8vw;"></a></td>
+                    <td><a href="mostrarCubo.php?idcubo=<?php echo $linha['idcubo']; ?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&quadrado_idquadrado=<?php echo $linha['quadrado_idquadrado']?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
 
                 </tr>
             <?php 

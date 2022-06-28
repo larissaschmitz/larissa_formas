@@ -79,29 +79,14 @@
                     "Base:" .$this->getBase();
             return $str;
         }
+        
         public function desenha(){
             $desenho = "<div style='height: ".$this->getAltura()."vw; width: ".$this->getBase()."vw; background-color:".$this->getCor().";'></div>";
             return $desenho;
         }
+
         public function Area(){}
 
-        /*public function __toString(){
-            $str = parent::__toString();
-            $str .= "<br>Lado: ".$this->getLado().
-            "<br>Área: ".$this->area().
-            "<br>Perímetro: ".$this->perimetro().
-            "<br>Diagonal: ".$this->diagonal();
-            return $str;
-        }
-
-        public function desenha(){
-            $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
-            return $desenho;
-        }*/
     }
 
-    // $ret = new Retangulo(1, 'rosa', 1, 10, 40);
-    // // var_dump($ret);
-    // print_r($ret);
-    // echo "<hr>  " .$ret;
 ?>

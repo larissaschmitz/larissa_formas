@@ -1,5 +1,5 @@
 <?php
-    require_once "Forma.class.php";
+    include_once ("classes/autoload.php");
     class Quadrado extends Forma{
         private $lado;
 
@@ -102,6 +102,24 @@
             $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
             return $desenho;
         }
+
+        public function buscarQuad($id){
+            require_once("conf/Conexao.php");
+
+            $conexao = Conexao::getInstance();
+
+            $query = 'SELECT * FROM quadrado';
+            if($id > 0){
+                $query .= ' WHERE idquadrado = :Id';
+                $stmt->bindParam(':Id', $id);
+            }
+                $stmt = $conexao->prepare($query);
+                if($stmt->execute())
+                    return $stmt->fetchAll();
+        
+                return false;
+        }
+
         // public function desenha() {
         //     $style = ".quadrado {
         //         height: ".$this->lado."vw;

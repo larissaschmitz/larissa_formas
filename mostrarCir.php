@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+    include_once ("classes/autoload.php");
     $title = "Círculo";
     $idcirculo = isset($_GET['idcirculo']) ? $_GET['idcirculo'] : 0;
     $raio = isset($_GET['raio']) ? $_GET['raio'] : 0;
@@ -25,7 +26,7 @@
         <br><br><br>
         <?php  
             if ($acao = "salvar") {
-                include_once "classes/Circulo.class.php";
+                // include_once "classes/Circulo.class.php";
                 $cir = new Circulo($idcirculo, $raio, $cor, $tabuleiro_idtabuleiro);
                 echo $cir->desenha();
                 echo $cir;

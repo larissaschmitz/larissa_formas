@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
     include_once ("classes/autoload.php");
-    $title = "Quadrado";
-    $idquadrado = isset($_GET['idquadrado']) ? $_GET['idquadrado'] : 0;
+    $title = "Cubo";
+    $idcubo = isset($_GET['idcubo']) ? $_GET['idcubo'] : 0;
     $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
-    $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
+    $quadrado_idquadrado = isset($_GET['quadrado_idquadrado']) ? $_GET['quadrado_idquadrado'] : "";
     $tabuleiro_idtabuleiro = isset($_GET['tabuleiro_idtabuleiro']) ? $_GET['tabuleiro_idtabuleiro'] : "";
 ?>
 
@@ -26,10 +26,13 @@
         <br><br><br>
         <?php  
             if ($acao = "salvar") {
-                // include_once "classes/Quadrado.class.php";
+                // include_once "classes/Circulo.class.php";
+                $cubo = new Cubo($idcubo, $cor, $quadrado_idquadrado, $tabuleiro_idtabuleiro);
+                echo $cubo->desenha();
+                echo $cubo;
+                
                 $quad = new Quadrado($idquadrado, $lado, $cor, $tabuleiro_idtabuleiro);
                 echo $quad->desenha();
-                echo $quad;
             }
             ?>
             <br>

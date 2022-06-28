@@ -1,5 +1,5 @@
 <?php
-require_once "Database.class.php";
+    include_once ("classes/autoload.php");
     class Usuario extends Database{
         private $idusuario;
         private $nome;

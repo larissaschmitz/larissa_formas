@@ -8,19 +8,8 @@
     acao($action, $table);
 
     function acao($acao, $table){
-        if($table == "quadrado"){
-            include_once('classes/Quadrado.class.php');
-        } else if($table == "tabuleiro"){
-            include_once('classes/Tabuleiro.class.php');
-        } else if($table == "usuario"){
-            include_once('classes/Usuario.class.php');
-        } else if($table == "triangulo"){
-            include_once('classes/Triangulo.class.php');
-        } else if($table == "circulo"){
-            include_once('classes/Circulo.class.php');
-        }else if($table == "retangulo"){
-            include_once('classes/Retangulo.class.php');
-        }
+        include_once ("classes/autoload.php");
+
         if($acao == "insert"){
             if($table == "quadrado"){
                 $quad = new Quadrado("", $_POST['cor'], $_POST['tabuleiro_idtabuleiro'], $_POST['lado'],);
@@ -45,7 +34,10 @@
                 $ret = new Retangulo("", $_POST['base'], $_POST['altura'],$_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $ret->inserir();
                 header("location:retangulo.php");
-            }
+            }else if($table == "cubo")  {
+                $cubo = new Cubo("", $_POST['cor'], $_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro']);
+                $cubo->inserir();
+                header("location:cubo.php");}
         }
         
         else if($acao == "excluir"){
@@ -187,8 +179,15 @@
         return option(array('idtabuleiro', 'lado'), $lista, $idSelect);
     }
     
+    function selectionQuad($id, $idSelect){
+        $quad = new Quadrado("","","","");
+        $lista = $quad->buscarQuad($id);
+        return option(array('idquadrado', 'lado'), $lista, $idSelect);
+    }
+
+
     function option($chave, $dados, $id=null){
-        $str = "<option value='0'>Selecione um tabuleiro</option>";
+        $str = "<option value='0'>Selecione uma opção</option>";
         $tab = new Tabuleiro("","");
 
         foreach($dados as $linha){
@@ -199,6 +198,20 @@
             $str .= "<option ".$selected." value='".$linha[$chave[0]]."'>".$linha[$chave[0]]."</option>";
         }
         return $str;
+
+        // function optionQuad($chave, $dados, $id=null){
+        //     $str = "<option value='0'>Selecione um tabuleiro</option>";
+        //     $quad = new Quadrado("","","","");
+    
+        //     foreach($dados as $linha){
+        //         $selected = "";
+        //         if($id == $linha[$chave[0]]){
+        //             $selected = "selected";
+        //         }
+        //         $str .= "<option ".$selected." value='".$linha[$chave[0]]."'>".$linha[$chave[0]]."</option>";
+        //     }
+        //     return $str;
+        //}
     }
 
 ?>

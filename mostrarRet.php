@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+    include_once ("classes/autoload.php");
+
     $title = "Retangulo";
     $idretangulo = isset($_GET['idretangulo']) ? $_GET['idretangulo'] : 0;
     $base = isset($_GET['base']) ? $_GET['base'] : 0;
@@ -26,7 +28,7 @@
         <br><br><br>
         <?php  
             if ($acao = "salvar") {
-                include_once "classes/Retangulo.class.php";
+                // include_once "classes/Retangulo.class.php";
                 $ret = new Retangulo($idretangulo, $base, $altura, $cor, $tabuleiro_idtabuleiro);
                 echo $ret->desenha();
                 echo $ret;
