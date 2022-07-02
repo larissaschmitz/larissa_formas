@@ -10,31 +10,32 @@
     function acao($acao, $table){
         include_once ("classes/autoload.php");
 
-        if($acao == "insert"){
-            if($table == "quadrado"){
-                $quad = new Quadrado("", $_POST['cor'], $_POST['tabuleiro_idtabuleiro'], $_POST['lado'],);
+        if($acao == "insert"){ 
+            if($table == "quadrado"){ //insert da tabela QUADRADO
+                $quad = new Quadrado("", $_POST['lado'],$_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $quad->inserir();
                 header("location:quadrado.php");
-            } else if($table == "tabuleiro")  {
-                $tab = Tabuleiro::inserir($_POST['lado']);
+            } else if($table == "tabuleiro")  { //insert da tabela TABULEIRO
+                $tab = new Tabuleiro("", $_POST['lado']);
+                $tab->inserir();
                 header("location:tabuleiro.php");
-            } else if($table == "usuario")  {
+            } else if($table == "usuario")  { //insert da tabela USUARIO
                 $user = new Usuario("", $_POST['nome'], $_POST['login'], $_POST['senha']);
                 $user->inserir();
                 header("location:usuario.php");
-            }  else if($table == "triangulo")  {
-                $tri = new Triangulo("", $_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+            }  else if($table == "triangulo")  { //insert da tabela TRIANGULO
+                $tri = new Triangulo("", $_POST['base'], $_POST['lado1'], $_POST['lado2'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $tri->inserir();
                 header("location:triangulo.php");
-            } else if($table == "circulo")  {
+            } else if($table == "circulo")  { //insert da tabela CIRCULO
                 $cir = new Circulo("", $_POST['raio'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $cir->inserir();
                 header("location:circulo.php");
-            }else if($table == "retangulo")  {
+            }else if($table == "retangulo")  { //insert da tabela RETANGULO
                 $ret = new Retangulo("", $_POST['base'], $_POST['altura'],$_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $ret->inserir();
                 header("location:retangulo.php");
-            }else if($table == "cubo")  {
+            }else if($table == "cubo")  { //insert da tabela CUBO
                 $cubo = new Cubo("", $_POST['cor'], $_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro']);
                 $cubo->inserir();
                 header("location:cubo.php");}
@@ -46,7 +47,8 @@
                 $quad->excluir();                
                 header("location:quadrado.php");
             } else if($table == "tabuleiro"){
-                $tab = Tabuleiro::excluir($_GET['idtabuleiro']);
+                $tab = new Tabuleiro($_GET['idtabuleiro'], "");
+                $tab->excluir();
                 header("location:tabuleiro.php");
             } else if($table == "usuario"){
                 $user = new Usuario($_GET['idusuario'], "", "", "",);
@@ -72,14 +74,15 @@
                     $quad->editar();
                 header("location:quadrado.php");  
             } else if ($table == "tabuleiro"){
-                $tab = Tabuleiro::editar($_POST['idtabuleiro'], $_POST['lado']);
+                    $tab = new Tabuleiro($_POST['idtabuleiro'], $_POST['lado']);
+                $tab ->editar();
                 header("location:tabuleiro.php");
             }else if ($table == "usuario"){
                 $user = new Usuario ($_POST['idusuario'], $_POST['nome'], $_POST['login'], $_POST['senha']);
                 $user->editar();
                 header("location:usuario.php");
             }else if ($table == "triangulo"){
-                $tri = new Triangulo($_POST['idtriangulo'], $_POST['lado1'], $_POST['lado2'], $_POST['lado3'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
+                $tri = new Triangulo($_POST['idtriangulo'], $_POST['base'], $_POST['lado1'], $_POST['lado2'], $_POST['cor'], $_POST['tabuleiro_idtabuleiro']);
                 $tri->editar();
                 header("location:triangulo.php");
             }else if ($table == "circulo"){
@@ -105,9 +108,9 @@
         $dados['senha'] = $_POST["senha"];
         $dados['idusuario'] = $_POST["idusuario"];
         $dados['idtriangulo'] = $_POST["idtriangulo"];
+        $dados['base'] = $_POST["base"];
         $dados['lado1'] = $_POST["lado1"];
         $dados['lado2'] = $_POST["lado2"];
-        $dados['lado3'] = $_POST["lado3"];
         $dados['idcirculo'] = $_POST["idcirculo"];
         $dados['raio'] = $_POST["raio"];
         $dados['idretangulo'] = $_POST["idretangulo"];
@@ -146,9 +149,9 @@
                 $consulta = $pdo->query("SELECT * FROM triangulo WHERE idtriangulo = $id");
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
                     $dados['idtriangulo'] = $linha['idtriangulo'];
+                    $dados['base'] = $linha['base'];
                     $dados['lado1'] = $linha['lado1'];
-                    $dados['lado2'] = $linha['lado2'];
-                    $dados['lado3'] = $linha['lado3'];   
+                    $dados['lado2'] = $linha['lado2'];   
                     $dados['cor'] = $linha['cor'];
                     $dados['tabuleiro_idtabuleiro'] = $linha['tabuleiro_idtabuleiro'];
             }     

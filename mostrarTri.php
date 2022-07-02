@@ -3,9 +3,9 @@
     include_once ("classes/autoload.php");
     $title = "Triangulo";
     $idtriangulo = isset($_GET['idtriangulo']) ? $_GET['idtriangulo'] : 0;
+    $base = isset($_GET['base']) ? $_GET['base'] : 0;
     $lado1 = isset($_GET['lado1']) ? $_GET['lado1'] : 0;
     $lado2 = isset($_GET['lado2']) ? $_GET['lado2'] : 0;
-    $lado3 = isset($_GET['lado3']) ? $_GET['lado3'] : 0;
     $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
     $tabuleiro_idtabuleiro = isset($_GET['tabuleiro_idtabuleiro']) ? $_GET['tabuleiro_idtabuleiro'] : "";
 ?>
@@ -29,7 +29,7 @@
         <?php  
             if ($acao = "salvar") {
                 // include_once "classes/Circulo.class.php";
-                $tri = new Triangulo($idtriangulo, $lado1, $lado2, $lado3, $cor, $tabuleiro_idtabuleiro);
+                $tri = new Triangulo($idtriangulo, $base, $lado1, $lado2, $cor, $tabuleiro_idtabuleiro);
                 echo $tri->desenha();
                 echo $tri;
             }

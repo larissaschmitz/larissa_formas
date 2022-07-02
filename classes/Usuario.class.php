@@ -6,6 +6,7 @@
         private $login;
         private $senha;
 
+        //criação do construct
         public function __construct($idusuario,$nome,$login,$senha) {
             $this->setId($idusuario);
             $this->setNome($nome);
@@ -42,7 +43,7 @@
                 $this->senha = $senha;
         }
     
-        //CRUD
+        //Métodos CRUD e listagem
         public function inserir(){
             $sql = "INSERT INTO usuario (nome, login, senha) VALUES (:nome, :login, :senha)";
             $parametros = array(":nome"=> $this->getNome(),
@@ -69,8 +70,6 @@
             return parent::executaComando($sql, $parametros);
         }
 
-        
-        //CONSULTAS
         public static function listar($buscar = 0, $procurar = ""){
             $sql = "SELECT * FROM usuario";
             if ($buscar > 0)
@@ -88,6 +87,7 @@
             return parent::buscar($sql, $par);
         }
 
+        
        //Metodos diversos
         public function efetuarLogin($lg, $sn){
             $pdo = Conexao::getInstance();

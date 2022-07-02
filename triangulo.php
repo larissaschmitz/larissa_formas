@@ -29,12 +29,12 @@
         echo "<br>";
     ?>
         <div class="container-fluid">
-        <h3>Consulta</h3>
+        <h3>Consulta de triangulos</h3>
         <table class="table table-hover">
                 <tr><td><b>ID</b></td>
+                    <td><b>Base</b></td>
                     <td><b>Lado 1</b></td>
                     <td><b>Lado 2</b></td>
-                    <td><b>Lado 3</b></td>
                     <td><b>Cor</b></td>
                     <td><b>Tabuleiro</b></td>
                     <td><b>Editar</b></td>
@@ -52,7 +52,7 @@
                         <p> Ordernar e pesquisar por:</p><br>
                         <form method="post" action="">
                         <input type="radio" name="buscar" value="1" class="form-check-input" <?php if ($buscar == "1") echo "checked" ?>> Id<br>
-                        <input type="radio" name="buscar" value="2" class="form-check-input" <?php if ($buscar == "2") echo "checked" ?>> Lado 1<br>
+                        <input type="radio" name="buscar" value="2" class="form-check-input" <?php if ($buscar == "2") echo "checked" ?>> Base<br>
                         <input type="radio" name="buscar" value="3" class="form-check-input" <?php if ($buscar == "3") echo "checked" ?>> Cor<br>
                     </div>
                     <br><br>
@@ -64,15 +64,15 @@
                 foreach ($lista as $linha) { 
             ?>
                 <tr><td><?php echo $linha['idtriangulo'];?></td>
+                    <td><?php echo $linha['base'];?></td>
                     <td><?php echo $linha['lado1'];?></td>
                     <td><?php echo $linha['lado2'];?></td>
-                    <td><?php echo $linha['lado3'];?></td>
                     <td><?php echo $linha['cor'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                 
                     <td><a href='cadTri.php?idtriangulo=<?php echo $linha['idtriangulo'];?>&action=editar'><img src="img/edit.svg" style="width: 1.8vw;"></a></td>
                     <td><a onclick="return confirm('Deseja mesmo excluir?')" href="acao.php?idtriangulo=<?php echo $linha['idtriangulo'];?>&table=triangulo&action=excluir"><img src="img/delete.svg" style="width: 1.8vw;"></a></td>
-                    <td><a href="mostrarTri.php?idtriangulo=<?php echo $linha['idtriangulo']; ?>&lado1=<?php echo $linha['lado1'];?>&lado2=<?php echo $linha['lado2'];?>&lado3=<?php echo $linha['lado3'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
+                    <td><a href="mostrarTri.php?idtriangulo=<?php echo $linha['idtriangulo']; ?>&base=<?php echo $linha['base'];?>&lado1=<?php echo $linha['lado1'];?>&lado2=<?php echo $linha['lado2'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='img/list.svg' style="width: 1.8vw;"></a></td>
                 </tr>
             <?php 
                 }

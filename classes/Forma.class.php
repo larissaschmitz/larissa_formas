@@ -2,19 +2,18 @@
 /*
     Super classe Forma que irá definir aquilo que é comum (Classe Pai)
 */
-include_once ("classes/autoload.php");
+include_once ("classes/autoload.php"); //adiciona a classe autoload
 
     abstract class Forma extends Database{
         private $id;
         private $cor;
         private $tabuleiro_idtabuleiro;
-        // private static $contador = 0;
 
+        //criação do construct
         public function __construct($id, $cor, $tabuleiro_idtabuleiro) {
             $this->setId($id);
             $this->setCor($cor);
             $this->setIdT($tabuleiro_idtabuleiro);
-            // self::$contador = self::$contador + 1;
         }
         
         //Metodos get e set
@@ -39,15 +38,16 @@ include_once ("classes/autoload.php");
                 $this->tabuleiro_idtabuleiro = $tabuleiro_idtabuleiro;
         }
 
+        //método toString
         public function __toString() {
-            return  "[Forma]<br>Id: ".$this->getId()."<br>".
+            return  "Id: ".$this->getId()."<br>".
                     "Cor: ".$this->getCor()."<br>".
                     "Id Tabulueiro: ".$this->getIdT()."";
-                    // "Contador: ".self::$contador;
         }
 
+        //demais métodos abstract
         public abstract function desenha();
-        public abstract function Area();
+        public abstract function area();
         public abstract function inserir();
         public abstract function editar();
         public abstract function excluir();

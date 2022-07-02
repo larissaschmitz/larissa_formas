@@ -60,6 +60,8 @@
                 //listagem com filtro de select
                 $lista = Cubo::listar($buscar, $procurar); 
                 foreach ($lista as $linha) {
+                    //select para saber o lado do id do quadrado
+
             ?>
                 <tr><td><?php echo $linha['idcubo'];?></td>
                     <td><?php echo $linha['cor'];?></td>

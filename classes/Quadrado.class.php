@@ -3,33 +3,56 @@
     class Quadrado extends Forma{
         private $lado;
 
+        //Criação do construct
         public function __construct($id, $lado, $cor, $tabuleiro_idtabuleiro) {
             parent::__construct($id, $cor, $tabuleiro_idtabuleiro);
             $this->setLado($lado);
         }
         
         //Metodos get e set
-       
         public function getLado() {
             return $this->lado;
         }
         
         public function setLado($lado) {
-            // if ($lado >  0)
                 $this->lado = $lado;
-            // else 
-            //     throw new Exception("O lado deve ser maior que zero");
         }
         
-        // CRUD
+        //método toString
+        public function __toString(){
+            $str = parent::__toString();
+            $str .= "<br>Lado: ".$this->getLado().
+                    "<br>Área: ".$this->area().
+                    "<br>Perímetro: ".$this->perimetro().
+                    "<br>Diagonal: ".round($this->diagonal(),2);
+            return $str;
+        }
+        
+        //Metodos diversos
+        public function area() {
+            return $this->getLado() * $this->getLado();
+        }
+
+        public function perimetro() {
+            return $this->getLado()*4;
+        }
+
+        public function diagonal() {
+            return $this->getLado()*sqrt(2);
+        }
+        
+        public function desenha(){
+            // $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
+            // return $desenho;
+        }
+
+
+        // Métodos CRUD  e listagem
         public function inserir(){ 
             $sql = "INSERT INTO quadrado (lado, cor, tabuleiro_idtabuleiro) VALUES(:lado, :cor, :tabuleiro_idtabuleiro)";
             $parametros = array(":lado"=> $this->getLado(), 
                                 ":cor"=> $this->getCor(), 
                                 ":tabuleiro_idtabuleiro"=> $this->getIdT());
-                                // print_r($parametros);
-                                // die();
-           
             return parent::executaComando($sql, $parametros);
         }
 
@@ -38,7 +61,6 @@
             $parametros = array(":idquadrado" => $this->getId());
             return parent::executaComando($sql, $parametros);
         }
-        
 
         public function editar() {
             $sql = "UPDATE quadrado SET lado = :lado, cor = :cor, tabuleiro_idtabuleiro = :tabuleiro_idtabuleiro WHERE (idquadrado = :idquadrado);";
@@ -46,19 +68,17 @@
                                 ":cor"=> $this->getCor(), 
                                 ":tabuleiro_idtabuleiro"=> $this->getIdT(),
                                 ":idquadrado"=> $this->getId());
-                                // print_r($parametros);
-                                // die();
-           
             return parent::executaComando($sql, $parametros);
         }
+
 
         public static function listar($buscar = 0, $procurar = ""){
             $sql = "SELECT * FROM quadrado";
             if ($buscar > 0)
                 switch($buscar){
-                    case(1): $sql .= " WHERE idquadrado LIKE :procurar "; $procurar = $procurar."%";  break;
-                    case(2): $sql .= " WHERE quadrado.lado LIKE :procurar "; $procurar = $procurar."%"; break;
-                    case(3): $sql .= " WHERE cor LIKE :procurar "; $procurar = "%".$procurar."%";  break;
+                    case(1): $sql .= " WHERE idquadrado LIKE :procurar ORDER BY idquadrado"; $procurar = $procurar."%";  break;
+                    case(2): $sql .= " WHERE quadrado.lado LIKE :procurar ORDER BY lado"; $procurar = $procurar."%"; break;
+                    case(3): $sql .= " WHERE cor LIKE :procurar ORDER BY cor"; $procurar = "%".$procurar."%";  break;
                 }
             if ($buscar > 0)
                 $par = array(':procurar' => $procurar);
@@ -67,41 +87,6 @@
             return parent::buscar($sql, $par);
         }
 
-       
-       
-
-        //Metodos diversos
-        public function Area() {
-            return $this->getLado() * $this->getLado();
-        }
-    
-        public function Perimetro() {
-            return $this->getLado()*4;
-        }
-    
-        public function Diagonal() {
-            return $this->getLado()*sqrt(2);
-        }
-        
-        // public function __toString() {
-        //     $str = parent::__toString();
-        //     $str .= "<br>Lado: ".$this->getLado()."<br>";
-        //     return $str;
-        // }
-
-        public function __toString(){
-            $str = parent::__toString();
-            $str .= "<br>Lado: ".$this->getLado().
-            "<br>Área: ".$this->area().
-            "<br>Perímetro: ".$this->perimetro().
-            "<br>Diagonal: ".$this->diagonal();
-            return $str;
-        }
-
-        public function desenha(){
-            $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
-            return $desenho;
-        }
 
         public function buscarQuad($id){
             require_once("conf/Conexao.php");

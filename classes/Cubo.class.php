@@ -9,7 +9,6 @@
         }
         
         //Metodos get e set
-       
         public function getIdQ() {
             return $this->quadrado_idquadrado;
         }
@@ -86,7 +85,7 @@
 
         public function __toString(){
             $str = parent::__toString();
-            $str .= "<br>Lado do quadrado: ".$this->getIdQ();
+            $str .= "<br>Lado do quadrado: ";
             return $str;
         }
 
