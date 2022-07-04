@@ -30,7 +30,7 @@
             echo $tab; 
         ?> 
         <hr>
-        <div class = "tabuleiro"></div>
+        <center><div class = "tabuleiro"></div></center>
     </div>
 </body>
 </html>

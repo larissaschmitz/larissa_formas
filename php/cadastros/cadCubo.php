@@ -15,7 +15,7 @@
     if ($action == 'editar'){
         $id = isset($_GET['idcubo']) ? $_GET['idcubo'] : "";
         if ($id > 0){
-            $cubo = new Cubo("","", "", "");
+            $cubo = new Cubo("","","","","");
             $dados = $cubo->listar(1, $id);
         }
     }

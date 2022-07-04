@@ -16,10 +16,7 @@
         
         public function setLado($lado) {
                 $this->lado = $lado;
-        }
-        
-        //método toString
-        public function __toString(){
+        }public function __toString(){
             $str = parent::__toString();
             $str .= "<br>Lado: ".$this->getLado().
                     "<br>Área: ".$this->area().
@@ -27,6 +24,9 @@
                     "<br>Diagonal: ".round($this->diagonal(),2);
             return $str;
         }
+        
+        //método toString
+        
         
         //Metodos diversos
         public function area() {

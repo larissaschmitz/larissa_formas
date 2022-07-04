@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+    //inclusão de arquivos
     include_once ("../classes/autoload.php");
     $title = "Círculo";
     $idcirculo = isset($_GET['idcirculo']) ? $_GET['idcirculo'] : 0;
@@ -30,7 +31,7 @@
             echo $cir; 
         ?> 
         <hr>
-        <div class = "circulo"></div>
+        <center><div class = "circulo"></div></center>
     </div>
 </body>
 </html>

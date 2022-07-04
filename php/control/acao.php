@@ -36,7 +36,7 @@
                 $ret->inserir();
                 header("location:../consultas/retangulo.php");
             }else if($table == "cubo")  { //insert da tabela CUBO
-                $cubo = new Cubo("", $_POST['cor'], $_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro']);
+                $cubo = new Cubo("", $_POST['cor'], $_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro'], "");
                 $cubo->inserir();
                 header("location:../consultas/cubo.php");}
         }
@@ -66,6 +66,10 @@
                 $ret = new Retangulo($_GET['idretangulo'], "","","", "");
                 $ret->excluir();
                 header("location:../consultas/retangulo.php");
+            } else if($table == "cubo"){
+                $cubo = new Cubo($_GET['idcubo'], "","","","");
+                $cubo->excluir();
+                header("location:../consultas/cubo.php");
             }
         }
 
@@ -95,7 +99,7 @@
                 $ret->editar();
                 header("location:../consultas/retangulo.php");
             }else if ($table == "cubo"){
-                $cubo = new Cubo($_POST['idcubo'], $_POST['cor'],$_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro']);
+                $cubo = new Cubo($_POST['idcubo'], $_POST['cor'],$_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro'], "");
                 $cubo->editar();
                 header("location:../consultas/cubo.php");
             }

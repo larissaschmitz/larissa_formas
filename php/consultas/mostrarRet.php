@@ -30,7 +30,7 @@
             echo $ret; 
         ?> 
         <hr>
-        <div class = "retangulo"></div>
+        <center><div class = "retangulo"></div></center>
     </div>
 </body>
 </html>

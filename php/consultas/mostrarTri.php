@@ -25,7 +25,7 @@
         <a href='triangulo.php'><img src="../../img/back.svg" style="width: 1.8vw;"></a><br><hr>
         <?php
             echo $tri ."<br>";
-            echo $tri->desenha();
+            echo "<center>".$tri->desenha()."</center>";
 
         ?> 
         <hr>

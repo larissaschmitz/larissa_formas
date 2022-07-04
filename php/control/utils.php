@@ -28,7 +28,7 @@
             if($id == $linha[$chave[0]]){
                 $selected = "selected";
             }
-            $str .= "<option ".$selected." value='".$linha[$chave[0]]."'>".$linha[$chave[0]]."</option>";
+            $str .= "<option ".$selected." value='".$linha[$chave[0]]."'>".$linha[$chave[1]]."</option>";
         }
         return $str;
 

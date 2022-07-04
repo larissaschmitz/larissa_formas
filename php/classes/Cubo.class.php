@@ -1,40 +1,95 @@
 <?php
     include_once ("../classes/autoload.php");
-    class Cubo extends Forma{
-        private $quadrado_idquadrado;
+    class Cubo extends Quadrado{
+        private $idcubo;
+        private $cor;
 
-        public function __construct($id, $cor, $quadrado_idquadrado, $tabuleiro_idtabuleiro) {
-            parent::__construct($id, $cor, $tabuleiro_idtabuleiro);
-            $this->setIdQ($quadrado_idquadrado);
+
+        public function __construct($idcubo, $cor, $quadrado_idquadrado, $tabuleiro_idtabuleiro, $lado) {
+            parent::__construct($quadrado_idquadrado, $lado, "", $tabuleiro_idtabuleiro);
+            $this->setIdC($idcubo);
+            $this->setCor($cor);
         }
         
         //Metodos get e set
-        public function getIdQ() {
-            return $this->quadrado_idquadrado;
+        public function getIdC() {
+            return $this->idcubo;
         }
         
-        public function setIdQ($quadrado_idquadrado) {
-            // if ($lado >  0)
-                $this->quadrado_idquadrado = $quadrado_idquadrado;
-            // else 
-            //     throw new Exception("O lado deve ser maior que zero");
+        public function setIdC($idcubo) {
+                $this->idcubo = $idcubo;
         }
+        
+        public function getCor() {
+            return $this->cor;
+        }
+        
+        public function setCor($cor) {
+                $this->cor = $cor;
+        }
+
+        //Método toString
+        public function __toString() {
+            // $str = parent::__toString();
+            $str = "ID do Quadrado: ".$this->getIdC().
+                    "<br>ID do Cubo: ".$this->getId().
+                    "<br>Cor: ".$this->getCor().
+                    "<br>Lado: ".$this->getLado().
+                    "<br>Área do cubo: ".$this->area()."";
+            return $str;
+        }
+
+        //Métodos diversos
+        public function calcRotate(){
+            return $this->getLado() / 2;
+        }
+        
+        public function desenha(){
+            $str = "<br>
+                    <br>
+                    <style>                        
+                        .face--front {transform: translateZ(".$this->calcRotate()."vh);}
+                        .face--right {transform: rotateY(90deg) translateZ(".$this->calcRotate()."vh);}
+                        .face--back {transform: rotateY(180deg) translateZ(".$this->calcRotate()."vh);}
+                        .face--left {transform: rotateY(-90deg) translateZ(".$this->calcRotate()."vh);}
+                        .face--top {transform: rotateX(90deg) translateZ(".$this->calcRotate()."vh);}
+                        .face--bottom {transform: rotateX(-90deg) translateZ(".$this->calcRotate()."vh);}
+                        @keyframes rotate {
+                            from {transform: rotateX(-20deg) rotateY(-10deg);}
+                            50% {transform: rotateX(20deg) rotateY(320deg);}
+                            to {transform: rotateX(-20deg) rotateY(-20deg);}
+                        }
+                    </style>
+                    <div style='width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; animation: rotate 5s infinite alternate; transform-style: preserve-3d;' class='cube'>
+                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--front'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--right'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--back'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--left'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--top'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--bottom'></div>
+                    </div>";
+            return $str;
+        }
+
+        public function area() {
+            $area = 6 * ($this->getLado() * $this->getLado());
+            return $area;
+        }
+
         
         // CRUD
         public function inserir(){ 
             $sql = "INSERT INTO cubo (cor, quadrado_idquadrado, tabuleiro_idtabuleiro) VALUES(:cor, :quadrado_idquadrado, :tabuleiro_idtabuleiro)";
             $parametros = array(":cor"=> $this->getCor(), 
-                                ":quadrado_idquadrado"=> $this->getIdQ(), 
+                                ":quadrado_idquadrado"=> $this->getId(), 
                                 ":tabuleiro_idtabuleiro"=> $this->getIdT());
-                                // print_r($parametros);
-                                // die();
            
             return parent::executaComando($sql, $parametros);
         }
 
         public function excluir(){
             $sql = "DELETE FROM cubo WHERE idcubo = :idcubo";
-            $parametros = array(":idcubo" => $this->getId());
+            $parametros = array(":idcubo" => $this->getIdC());
             return parent::executaComando($sql, $parametros);
         }
         
@@ -42,56 +97,28 @@
         public function editar() {
             $sql = "UPDATE cubo SET cor = :cor, quadrado_idquadrado = :quadrado_idquadrado, tabuleiro_idtabuleiro = :tabuleiro_idtabuleiro WHERE (idcubo = :idcubo);";
             $parametros = array(":cor"=> $this->getCor(), 
-                                ":quadrado_idquadrado"=> $this->getIdQ(), 
+                                ":quadrado_idquadrado"=> $this->getId(), 
                                 ":tabuleiro_idtabuleiro"=> $this->getIdT(),
-                                ":idcubo"=> $this->getId());
-                                // print_r($parametros);
-                                // die();
-           
+                                ":idcubo"=> $this->getIdC());
+                // print_r($parametros);
+                // die();
+
             return parent::executaComando($sql, $parametros);
         }
 
         public static function listar($buscar = 0, $procurar = ""){
-            $sql = "SELECT * FROM cubo";
+            $sql = "SELECT * FROM quadrado, cubo WHERE quadrado_idquadrado = idquadrado";
             if ($buscar > 0)
                 switch($buscar){
-                    case(1): $sql .= " WHERE idcubo LIKE :procurar "; $procurar = $procurar."%";  break;
-                    case(2): $sql .= " WHERE cor LIKE :procurar "; $procurar = $procurar."%"; break;
-                    case(3): $sql .= " WHERE quadrado_idquadrado LIKE :procurar "; $procurar = "%".$procurar."%";  break;
+                    case(1): $sql .= " && idcubo LIKE :procurar "; $procurar = $procurar."%";  break;
+                    case(2): $sql .= " && cubo.cor LIKE :procurar "; $procurar = $procurar."%"; break;
+                    case(3): $sql .= " && quadrado_idquadrado LIKE :procurar "; $procurar = "%".$procurar."%";  break;
                 }
             if ($buscar > 0)
                 $par = array(':procurar' => $procurar);
             else
                 $par = array();
             return parent::buscar($sql, $par);
-        }
-
-       
-       
-
-        //Metodos diversos
-        public function Area() {
-            // return $this->getLado() * $this->getLado();
-        }
-    
-        // public function Perimetro() {
-        //     return $this->getLado()*4;
-        // }
-    
-        // public function Diagonal() {
-        //     return $this->getLado()*sqrt(2);
-        // }
-    
-
-        public function __toString(){
-            $str = parent::__toString();
-            $str .= "<br>Lado do quadrado: ";
-            return $str;
-        }
-
-        public function desenha(){
-            // $desenho = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color:".$this->getCor().";'></div>";
-            // return $desenho;
         }
     }
 

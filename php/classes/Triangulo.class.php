@@ -40,6 +40,7 @@
             $str .="<br>Base: ".$this->getBase()."<br>".
                     "Lado 1: ".$this->getLado1()."<br>".
                     "Lado 2: " .$this->getLado2()."<br>".
+                    "Altura do triângulo: " .$this->altura()."<br>".
                     "Área do triângulo: " .$this->area()."<br>".
                     "Classificação: ".$this->classe();
             return $str;
@@ -53,11 +54,9 @@
                 return "Triângulo escaleno";
             } else {
                 return "Triângulo isóceles";
-            }
-
-
-               
+            }  
         }
+
         public function desenha(){
             $str = "<div style='width: 0px; 
             height: 0px; 
@@ -66,14 +65,22 @@
             border-bottom: ".$this->base."vh solid ".parent::getcor().";'></div><br>";
             return $str;
         }        
-        
-        public function area(){
 
+        public function altura(){
+            $altura = round(sqrt(($this->base+$this->lado1+$this->lado2)*(-$this->base+$this->lado1+$this->lado2))/2,2);
+            return $altura;
         }
+
+        public function area() {
+            $area = round(sqrt(($this->base+$this->lado1+$this->lado2)*(-$this->base+$this->lado1+$this->lado2)*($this->base-$this->lado1+$this->lado2)*($this->base+$this->lado1-$this->lado2))/4,2);
+            return $area;
+        }
+        
+        
 
         //Métodos CRUD e listagem
         public function inserir(){
-            $sql = "INSERT INTO triangulo (base, lado1, lado2, cor, tabuleiro_idtabuleiro) VALUES(:base, :lado1, :lado2, :cor, :tabuleiro_idtabuleiro)";
+            $sql = "INSERT INTO triangulo (base, base, lado2, cor, tabuleiro_idtabuleiro) VALUES(:base, :lado1, :lado2, :cor, :tabuleiro_idtabuleiro)";
             $parametros = array(":base"=> $this->getBase(),
                                 ":lado1"=> $this->getLado1(),
                                 ":lado2"=> $this->getLado2(),

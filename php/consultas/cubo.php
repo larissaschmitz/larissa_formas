@@ -35,6 +35,7 @@
                     <td><b>Cor</b></td>
                     <td><b>Quadrado</b></td>
                     <td><b>Tabuleiro</b></td>
+                    <td><b>lado</b></td>
                     <td><b>Editar</b></td>
                     <td><b>Deletar</b></td>
                     <td><b>Listar</b></td>
@@ -67,10 +68,11 @@
                     <td><?php echo $linha['cor'];?></td>
                     <td><?php echo $linha['quadrado_idquadrado'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
+                    <td><?php echo $linha['lado'];?></td>
                 
                     <td><a href='../cadastros/cadCubo.php?idcubo=<?php echo $linha['idcubo'];?>&action=editar'><img src="../../img/edit.svg" style="width: 1.8vw;"></a></td>
                     <td><a onclick="return confirm('Deseja mesmo excluir?')" href="../control/acao.php?idcubo=<?php echo $linha['idcubo'];?>&table=cubo&action=excluir"><img src="../../img/delete.svg" style="width: 1.8vw;"></a></td>
-                    <td><a href="mostrarCubo.php?idcubo=<?php echo $linha['idcubo']; ?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&quadrado_idquadrado=<?php echo $linha['quadrado_idquadrado']?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='../../img/list.svg' style="width: 1.8vw;"></a></td>
+                    <td><a href="mostrarCubo.php?idcubo=<?php echo $linha['idcubo']; ?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&quadrado_idquadrado=<?php echo $linha['quadrado_idquadrado']?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>&lado=<?php echo $linha['lado']?>"><img src='../../img/list.svg' style="width: 1.8vw;"></a></td>
 
                 </tr>
             <?php 

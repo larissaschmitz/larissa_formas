@@ -30,7 +30,7 @@
             echo $quad; 
         ?> 
         <hr>
-        <div class = "quadrado"></div>
+        <center><div class = "quadrado"></div></center>
     </div>
 </body>
 </html>
