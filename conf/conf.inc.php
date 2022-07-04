@@ -3,7 +3,7 @@
     define('HOST', 'localhost:3306');  
     define('DBNAME', 'formas');    
     define('USER', 'root');  
-    define('PASSWORD', '*Fada030648');
+    define('PASSWORD', '');
 
     define('DRIVER', 'mysql'); 
     define('CHARSET', 'utf8');
