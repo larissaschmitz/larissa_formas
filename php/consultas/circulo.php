@@ -60,10 +60,11 @@
                 //listagem com filtro de select
                 $lista = Circulo::listar($buscar, $procurar); 
                 foreach ($lista as $linha) { 
+                    $color = $linha['cor'];
             ?>
                 <tr><td><?php echo $linha['idcirculo'];?></td>
                     <td><?php echo $linha['raio'];?></td>
-                    <td><?php echo $linha['cor'];?></td>
+                    <td <?php echo "style='color: $color'"?>><?php echo $linha['cor'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                 
                     <td><a href='../cadastros/cadCir.php?idcirculo=<?php echo $linha['idcirculo'];?>&action=editar'><img src="../../img/edit.svg" style="width: 1.8vw;"></a></td>

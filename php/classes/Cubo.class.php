@@ -30,9 +30,8 @@
 
         //Método toString
         public function __toString() {
-            // $str = parent::__toString();
-            $str = "ID do Quadrado: ".$this->getIdC().
-                    "<br>ID do Cubo: ".$this->getId().
+            $str = "ID do Quadrado: ".$this->getId().
+                    "<br>ID do Cubo: ".$this->getIdC().
                     "<br>Cor: ".$this->getCor().
                     "<br>Lado: ".$this->getLado().
                     "<br>Área do cubo: ".$this->area()."";
@@ -48,25 +47,25 @@
             $str = "<br>
                     <br>
                     <style>                        
-                        .face--front {transform: translateZ(".$this->calcRotate()."vh);}
-                        .face--right {transform: rotateY(90deg) translateZ(".$this->calcRotate()."vh);}
-                        .face--back {transform: rotateY(180deg) translateZ(".$this->calcRotate()."vh);}
-                        .face--left {transform: rotateY(-90deg) translateZ(".$this->calcRotate()."vh);}
-                        .face--top {transform: rotateX(90deg) translateZ(".$this->calcRotate()."vh);}
-                        .face--bottom {transform: rotateX(-90deg) translateZ(".$this->calcRotate()."vh);}
+                        .face--front {transform: translateZ(".$this->calcRotate()."px);}
+                        .face--right {transform: rotateY(90deg) translateZ(".$this->calcRotate()."px);}
+                        .face--back {transform: rotateY(180deg) translateZ(".$this->calcRotate()."px);}
+                        .face--left {transform: rotateY(-90deg) translateZ(".$this->calcRotate()."px);}
+                        .face--top {transform: rotateX(90deg) translateZ(".$this->calcRotate()."px);}
+                        .face--bottom {transform: rotateX(-90deg) translateZ(".$this->calcRotate()."px);}
                         @keyframes rotate {
                             from {transform: rotateX(-20deg) rotateY(-10deg);}
                             50% {transform: rotateX(20deg) rotateY(320deg);}
                             to {transform: rotateX(-20deg) rotateY(-20deg);}
                         }
                     </style>
-                    <div style='width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; animation: rotate 5s infinite alternate; transform-style: preserve-3d;' class='cube'>
-                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--front'></div>
-                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--right'></div>
-                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--back'></div>
-                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--left'></div>
-                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--top'></div>
-                        <div style='background-color: ".$this->getCor()."; border: 2px black solid; width: ".$this->getLado()."vh; height: ".$this->getLado()."vh; position: absolute;' class='face--bottom'></div>
+                    <div style='width: ".$this->getLado()."px; height: ".$this->getLado()."px; animation: rotate 5s infinite alternate; transform-style: preserve-3d;' class='cube'>
+                        <div style='background-color: ".$this->getCor()."; border: 1px black solid; width: ".$this->getLado()."px; height: ".$this->getLado()."px; position: absolute;' class='face--front'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 1px black solid; width: ".$this->getLado()."px; height: ".$this->getLado()."px; position: absolute;' class='face--right'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 1px black solid; width: ".$this->getLado()."px; height: ".$this->getLado()."px; position: absolute;' class='face--back'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 1px black solid; width: ".$this->getLado()."px; height: ".$this->getLado()."px; position: absolute;' class='face--left'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 1px black solid; width: ".$this->getLado()."px; height: ".$this->getLado()."px; position: absolute;' class='face--top'></div>
+                        <div style='background-color: ".$this->getCor()."; border: 1px black solid; width: ".$this->getLado()."px; height: ".$this->getLado()."px; position: absolute;' class='face--bottom'></div>
                     </div>";
             return $str;
         }
@@ -100,8 +99,6 @@
                                 ":quadrado_idquadrado"=> $this->getId(), 
                                 ":tabuleiro_idtabuleiro"=> $this->getIdT(),
                                 ":idcubo"=> $this->getIdC());
-                // print_r($parametros);
-                // die();
 
             return parent::executaComando($sql, $parametros);
         }

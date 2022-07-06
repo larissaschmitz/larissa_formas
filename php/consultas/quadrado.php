@@ -60,10 +60,11 @@
                 //listagem com filtro de select
                 $lista = Quadrado::listar($buscar, $procurar); 
                 foreach ($lista as $linha) { 
+                    $color = $linha['cor'];
             ?>
                 <tr><td><?php echo $linha['idquadrado'];?></td>
                     <td><?php echo $linha['lado'];?></td>
-                    <td><?php echo $linha['cor'];?></td>
+                    <td <?php echo "style='color: $color'"?>><?php echo $linha['cor'];?></div></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                 
                     <td><a href='../cadastros/cadQuadrado.php?idquadrado=<?php echo $linha['idquadrado'];?>&action=editar'><img src="../../img/edit.svg" style="width: 1.8vw;"></a></td>

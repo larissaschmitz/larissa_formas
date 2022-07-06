@@ -38,7 +38,11 @@
             }else if($table == "cubo")  { //insert da tabela CUBO
                 $cubo = new Cubo("", $_POST['cor'], $_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro'], "");
                 $cubo->inserir();
-                header("location:../consultas/cubo.php");}
+                header("location:../consultas/cubo.php");
+            }else if($table == "esfera")  { //insert da tabela ESFERA
+                $esfera = new Esfera("", $_POST['cor'], $_POST['circulo_idcirculo'], $_POST['tabuleiro_idtabuleiro'], "");
+                $esfera->inserir();
+                header("location:../consultas/esfera.php");}
         }
         
         else if($acao == "excluir"){
@@ -70,6 +74,10 @@
                 $cubo = new Cubo($_GET['idcubo'], "","","","");
                 $cubo->excluir();
                 header("location:../consultas/cubo.php");
+            }else if($table == "esfera"){
+                $esfera = new Esfera($_GET['idesfera'], "","","","");
+                $esfera->excluir();
+                header("location:../consultas/esfera.php");
             }
         }
 
@@ -102,6 +110,10 @@
                 $cubo = new Cubo($_POST['idcubo'], $_POST['cor'],$_POST['quadrado_idquadrado'], $_POST['tabuleiro_idtabuleiro'], "");
                 $cubo->editar();
                 header("location:../consultas/cubo.php");
+            }else if ($table == "esfera"){
+                $esfera = new Esfera($_POST['idesfera'], $_POST['cor'],$_POST['circulo_idcirculo'], $_POST['tabuleiro_idtabuleiro'], "");
+                $esfera->editar();
+                header("location:../consultas/esfera.php");
             }
         }
 }

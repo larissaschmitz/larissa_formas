@@ -29,7 +29,7 @@
         echo "<br>";
     ?>
         <div class="container-fluid">
-        <h3>Consulta</h3>
+        <h3>Consulta de cubos</h3>
         <table class="table table-hover">
                 <tr><td><b>ID</b></td>
                     <td><b>Cor</b></td>
@@ -62,10 +62,11 @@
                 $lista = Cubo::listar($buscar, $procurar); 
                 foreach ($lista as $linha) {
                     //select para saber o lado do id do quadrado
+                    $color = $linha['cor'];
 
             ?>
                 <tr><td><?php echo $linha['idcubo'];?></td>
-                    <td><?php echo $linha['cor'];?></td>
+                    <td <?php echo "style='color: $color'"?>><?php echo $linha['cor'];?></td>
                     <td><?php echo $linha['quadrado_idquadrado'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                     <td><?php echo $linha['lado'];?></td>

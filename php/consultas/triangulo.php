@@ -62,12 +62,13 @@
                 //listagem com filtro de select
                 $lista = Triangulo::listar($buscar, $procurar); 
                 foreach ($lista as $linha) { 
+                    $color = $linha['cor'];
             ?>
                 <tr><td><?php echo $linha['idtriangulo'];?></td>
                     <td><?php echo $linha['base'];?></td>
                     <td><?php echo $linha['lado1'];?></td>
                     <td><?php echo $linha['lado2'];?></td>
-                    <td><?php echo $linha['cor'];?></td>
+                    <td <?php echo "style='color: $color'"?>><?php echo $linha['cor'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
                 
                     <td><a href='../cadastros/cadTri.php?idtriangulo=<?php echo $linha['idtriangulo'];?>&action=editar'><img src="../../img/edit.svg" style="width: 1.8vw;"></a></td>

@@ -7,7 +7,6 @@
     $cor = isset($_GET['cor']) ? $_GET['cor'] : 0;
     $quadrado_idquadrado = isset($_GET['quadrado_idquadrado']) ? $_GET['quadrado_idquadrado'] : 0;
     $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
-    $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
     $tabuleiro_idtabuleiro = isset($_GET['tabuleiro_idtabuleiro']) ? $_GET['tabuleiro_idtabuleiro'] : "";
 
     $cubo = new Cubo($idcubo, $cor, $quadrado_idquadrado, $tabuleiro_idtabuleiro, $lado);

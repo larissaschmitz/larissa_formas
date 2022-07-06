@@ -32,15 +32,17 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="../consultas/cubo.php">Cubo</a></li>
               <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../consultas/esfera.php">Esfera</a></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="../consultas/usuario.php">Usuário</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../cadastros/cadQuadrado.php">Cadastro de quadrados</a></li>
+              <li><a class="dropdown-item" href="../cadastros/cadQuadrado.php">Cadastro de Quadrados</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="../cadastros/cadTabuleiro.php">Cadastro de tabuleiros</a></li>
+              <li><a class="dropdown-item" href="../cadastros/cadTabuleiro.php">Cadastro de Tabuleiros</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="../cadastros/cadTri.php">Cadastro de Triangulo</a></li>
               <li><hr class="dropdown-divider"></li>
@@ -49,6 +51,8 @@
               <li><a class="dropdown-item" href="../cadastros/cadCir.php">Cadastro de Circulos</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="../cadastros/cadCubo.php">Cadastro de Cubos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="../cadastros/cadEsf.php">Cadastro de Esferas</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="../cadastros/cadUsuario.php">Cadastro de Usuário</a></li>
             </ul>

@@ -8,7 +8,7 @@
     //variaveis
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
     $buscar = isset($_POST["buscar"]) ? $_POST["buscar"] : 1; 
-    $table = "retangulo";
+    $table = "esfera";
     ?>
 
 <html lang="pt-br">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Retangulo</title>
+    <title>Esfera</title>
 </head>
 
 <body>
@@ -29,13 +29,13 @@
         echo "<br>";
     ?>
         <div class="container-fluid">
-        <h3>Consulta de retangulos</h3>
+        <h3>Consulta de esfera</h3>
         <table class="table table-hover">
                 <tr><td><b>ID</b></td>
-                    <td><b>Base</b></td>
-                    <td><b>Altura</b></td>
                     <td><b>Cor</b></td>
+                    <td><b>Circulo</b></td>
                     <td><b>Tabuleiro</b></td>
+                    <td><b>Raio</b></td>
                     <td><b>Editar</b></td>
                     <td><b>Deletar</b></td>
                     <td><b>Listar</b></td>
@@ -51,27 +51,30 @@
                         <p> Ordernar e pesquisar por:</p><br>
                         <form method="post" action="">
                         <input type="radio" name="buscar" value="1" class="form-check-input" <?php if ($buscar == "1") echo "checked" ?>> Id<br>
-                        <input type="radio" name="buscar" value="2" class="form-check-input" <?php if ($buscar == "2") echo "checked" ?>> Base<br>
-                        <input type="radio" name="buscar" value="3" class="form-check-input" <?php if ($buscar == "3") echo "checked" ?>> Cor<br>
+                        <input type="radio" name="buscar" value="2" class="form-check-input" <?php if ($buscar == "2") echo "checked" ?>> Cor<br>
+                        <input type="radio" name="buscar" value="3" class="form-check-input" <?php if ($buscar == "3") echo "checked" ?>> Circulo<br>
                     </div>
                     <br><br>
                 </form>
 
             <?php
                 //listagem com filtro de select
-                $lista = Retangulo::listar($buscar, $procurar); 
-                foreach ($lista as $linha) { 
+                $lista = Esfera::listar($buscar, $procurar); 
+                foreach ($lista as $linha) {
+                    //select para saber o lado do id do quadrado
                     $color = $linha['cor'];
+
             ?>
-                <tr><td><?php echo $linha['idretangulo'];?></td>
-                    <td><?php echo $linha['base'];?></td>
-                    <td><?php echo $linha['altura'];?></td>
+                <tr><td><?php echo $linha['idesfera'];?></td>
                     <td <?php echo "style='color: $color'"?>><?php echo $linha['cor'];?></td>
+                    <td><?php echo $linha['circulo_idcirculo'];?></td>
                     <td><?php echo $linha['tabuleiro_idtabuleiro'];?></td>
+                    <td><?php echo $linha['raio'];?></td>
                 
-                    <td><a href='../cadastros/cadRet.php?idretangulo=<?php echo $linha['idretangulo'];?>&action=editar'><img src="../../img/edit.svg" style="width: 1.8vw;"></a></td>
-                    <td><a onclick="return confirm('Deseja mesmo excluir?')" href="../control/acao.php?idretangulo=<?php echo $linha['idretangulo'];?>&table=retangulo&action=excluir"><img src="../../img/delete.svg" style="width: 1.8vw;"></a></td>
-                    <td><a href="mostrarRet.php?idretangulo=<?php echo $linha['idretangulo'];?>&base=<?php echo $linha['base'];?>&altura=<?php echo $linha['altura'];?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>"><img src='../../img/list.svg' style="width: 1.8vw;"></a></td>
+                    <td><a href='../cadastros/cadEsf.php?idesfera=<?php echo $linha['idesfera'];?>&action=editar'><img src="../../img/edit.svg" style="width: 1.8vw;"></a></td>
+                    <td><a onclick="return confirm('Deseja mesmo excluir?')" href="../control/acao.php?idesfera=<?php echo $linha['idesfera'];?>&table=esfera&action=excluir"><img src="../../img/delete.svg" style="width: 1.8vw;"></a></td>
+                    <td><a href="mostrarEsfera.php?idesfera=<?php echo $linha['idesfera']; ?>&cor=<?php echo str_replace('#', '%23', $linha['cor']);?>&circulo_idcirculo=<?php echo $linha['circulo_idcirculo']?>&tabuleiro_idtabuleiro=<?php echo $linha['tabuleiro_idtabuleiro']?>&raio=<?php echo $linha['raio']?>"><img src='../../img/list.svg' style="width: 1.8vw;"></a></td>
+
                 </tr>
             <?php 
                 }

@@ -50,6 +50,22 @@
             return $style;
         }
         
+        public function buscarCirc($id){
+            require_once("../../conf/Conexao.php");
+
+            $conexao = Conexao::getInstance();
+
+            $query = 'SELECT * FROM circulo';
+            if($id > 0){
+                $query .= ' WHERE idcirculo = :Id';
+                $stmt->bindParam(':Id', $id);
+            }
+                $stmt = $conexao->prepare($query);
+                if($stmt->execute())
+                    return $stmt->fetchAll();
+        
+                return false;
+        }
 
         //Métodos CRUD e listagem
         public function inserir(){

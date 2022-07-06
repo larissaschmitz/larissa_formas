@@ -30,7 +30,7 @@
     ?>
 
         <div class="container-fluid">
-        <h3>Consulta</h3>
+        <h3>Consulta de tabuleiros</h3>
         <table class="table table-hover">
                 <tr><td><b>Id</b></td>
                     <td><b>Lado</b></td>

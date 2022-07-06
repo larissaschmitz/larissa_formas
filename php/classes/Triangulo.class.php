@@ -80,7 +80,7 @@
 
         //Métodos CRUD e listagem
         public function inserir(){
-            $sql = "INSERT INTO triangulo (base, base, lado2, cor, tabuleiro_idtabuleiro) VALUES(:base, :lado1, :lado2, :cor, :tabuleiro_idtabuleiro)";
+            $sql = "INSERT INTO triangulo (base, lado1, lado2, cor, tabuleiro_idtabuleiro) VALUES(:base, :lado1, :lado2, :cor, :tabuleiro_idtabuleiro)";
             $parametros = array(":base"=> $this->getBase(),
                                 ":lado1"=> $this->getLado1(),
                                 ":lado2"=> $this->getLado2(),

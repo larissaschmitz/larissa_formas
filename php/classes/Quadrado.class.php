@@ -16,7 +16,8 @@
         
         public function setLado($lado) {
                 $this->lado = $lado;
-        }public function __toString(){
+        }
+        public function __toString(){
             $str = parent::__toString();
             $str .= "<br>Lado: ".$this->getLado().
                     "<br>Área: ".$this->area().
@@ -109,11 +110,4 @@
         }
 
     }
-
-    // $quad = new Quadrado(1, 'rosa', 1, 40);
-    // var_dump($ret);
-    // print_r($ret);
-    // echo "<hr>  " .$quad;
-    ?>
-
-
+?>

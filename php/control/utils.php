@@ -18,6 +18,11 @@
         return option(array('idquadrado', 'lado'), $lista, $idSelect);
     }
 
+    function selectionCirc($id, $idSelect){
+        $cir = new Circulo("","","","");
+        $lista = $cir->buscarCirc($id);
+        return option(array('idcirculo', 'raio'), $lista, $idSelect);
+    }
 
     function option($chave, $dados, $id=null){
         $str = "<option value='0'>Selecione uma opção</option>";

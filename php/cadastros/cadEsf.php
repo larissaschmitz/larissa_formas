@@ -4,19 +4,19 @@
     include_once ("../classes/autoload.php");
     require_once "../../conf/Conexao.php";
     include_once "../control/acao.php";
+    include_once "../control/utils.php";
     //variaveis
     $action = isset($_GET['action']) ? $_GET['action'] : "";
-    $table = "retangulo";
-    $id = isset($_POST['idretangulo']) ? $_POST['idretangulo'] : "";
-    $base = isset($_POST['base']) ? $_POST['base'] : 0;
-    $altura = isset($_POST['altura']) ? $_POST['altura'] : 0;
-    $cor = isset($_POST['cor']) ? $_POST['cor'] : "";
+    $table = "esfera";
+    $id = isset($_POST['idesfera']) ? $_POST['idesfera'] : "";
+    $cor = isset($_POST['cor']) ? $_POST['cor'] : "";   
+    $circulo_idcirculo = isset($_POST['circulo_idcirculo']) ? $_POST['circulo_idcirculo'] : "";
     $tabuleiro_idtabuleiro = isset($_POST['tabuleiro_idtabuleiro']) ? $_POST['tabuleiro_idtabuleiro'] : "";
     if ($action == 'editar'){
-        $id = isset($_GET['idretangulo']) ? $_GET['idretangulo'] : "";
+        $id = isset($_GET['idesfera']) ? $_GET['idesfera'] : "";
         if ($id > 0){
-            $ret = new Retangulo("","", "", "", "");
-            $dados = $ret->listar(1, $id);
+            $esfera = new Esfera("","","","","");
+            $dados = $esfera->listar(1, $id);
         }
     }
     ?>
@@ -28,7 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Cadastro de retangulo</title>
+    <title>Cadastro de esfera</title>
 </head>
 
 <body>
@@ -38,11 +38,16 @@
     ?>
     <div class="container-fluid">
         <form method="post" action="../control/acao.php">
-            Base: <input name="base" id="base" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados[0]['base'];}?>"><br>         
-            Altura: <input name="altura" id="altura" type="number" required="true" placeholder="Digite o lado" value="<?php if ($action == "editar"){echo $dados[0]['altura'];}?>"><br>         
-            <br>
             Cor: <input name="cor" id="cor" type="color" required="true" placeholder="Digite a cor" value="<?php if ($action == "editar"){echo $dados[0]['cor'];}?>"><br>
             <br>
+            Circulo:
+                <select name="circulo_idcirculo"  id="circulo_idcirculo" class="form-select">
+                    <?php
+                        require_once ("../control/utils.php");
+                        echo selectionCirc(0, $dados[0]['circulo_idcirculo']);
+                    ?>
+                </select>
+                <br>
             Tabela:
                 <select name="tabuleiro_idtabuleiro"  id="tabuleiro_idtabuleiro" class="form-select">
                     <?php
@@ -52,8 +57,8 @@
                 </select>
                 <br>
                     
-            <input type="hidden" id="table" name="table" class="table" value="retangulo">
-            <input type="hidden" name="idretangulo" id="" value="<?php if($action == "editar"){echo $dados[0]['idretangulo'];}?>">
+            <input type="hidden" id="table" name="table" class="table" value="esfera">
+            <input type="hidden" name="idesfera" id="" value="<?php if($action == "editar"){echo $dados[0]['idesfera'];}?>">
 
             <button  type="submit" class="btn btn-outline-dark" name="action" id="action" value="<?php if($action == "editar"){echo "editar";} else {echo "insert";}?>">Enviar</button>
         </form>  

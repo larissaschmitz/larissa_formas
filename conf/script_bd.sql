@@ -129,6 +129,32 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
+-- Table `formas`.`esfera`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS ` formas`.`esfera` (
+  `idesfera` INT NOT NULL AUTO_INCREMENT,
+  `cor` VARCHAR(45) NULL,
+  `circulo_idcirculo` INT NOT NULL,
+  `tabuleiro_idtabuleiro` INT NOT NULL,
+  PRIMARY KEY (`idesfera`),
+  INDEX `fk_esfera_circulo1_idx` (`circulo_idcirculo` ASC) VISIBLE,
+  INDEX `fk_esfera_tabuleiro1_idx` (`tabuleiro_idtabuleiro` ASC) VISIBLE,
+  CONSTRAINT `fk_esfera_circulo1`
+    FOREIGN KEY (`circulo_idcirculo`)
+    REFERENCES `quadrado`.`circulo` (`idcirculo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_esfera_tabuleiro1`
+    FOREIGN KEY (`tabuleiro_idtabuleiro`)
+    REFERENCES `quadrado`.`tabuleiro` (`idtabuleiro`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
 -- Table `quadrado`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `formas`.`usuario` (
